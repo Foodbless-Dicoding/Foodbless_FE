@@ -1,4 +1,74 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
+
+
+/* Navbar Landing Custom CSS - Start  */
+@media  (min-width: 320px) and (max-width: 639px) {
+    #masuk-btn {
+        display: none;
+    }
+
+    #daftar-btn {
+        display: none;
+    }
+}
+
+@media (min-width: 1000px) {
+    #logo_img {
+        width: 250px;
+    }
+}
+
+@media (min-width: 640px) {
+    #hamburger_btn {
+        display: none;
+    }
+    
+}
+
+/* Navbar Landing Custom CSS - End */
+
+/* Why Items - Start */
+.why_item {
+    width: 260px;
+    height: 200px;
+    border-radius: 15px;
+}
+
+#first_why {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/first.png') no-repeat center / cover;
+}
+
+#sec_why {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/second.png') no-repeat center / cover;
+}
+
+#thd_why {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/third.png') no-repeat center / cover;
+}
+
+#fth_why {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/fourth.png') no-repeat center / cover;
+}
+/* Why Items- End */
+
+/* Join Us - Start */
+.join_us {
+    width: 100%;
+    height: 400px ;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/joinbanner.png') no-repeat center / cover;
+}
+/* Join Us - End */
+
+/* Landing Footer - Start */
+.landing_footer {
+    width: 100%;
+    height: 100px;
+}
+/* Landing Footer - End */

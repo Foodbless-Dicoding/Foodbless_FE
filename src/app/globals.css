@@ -72,3 +72,30 @@
     height: 100px;
 }
 /* Landing Footer - End */
+
+/* Login Page - Start */
+.login_bg {
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/bg_login.png') no-repeat center / cover;
+}
+
+.form_block {
+    width: 800px;
+    height: 500px;
+}
+
+.bg_left {
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/bg_login2.png') no-repeat center / cover;
+}
+
+@media (min-width: 320px) and (max-width: 640px) {
+    .left_login {
+        display: none;
+    }
+}
+
+
+/* Login Page - End */

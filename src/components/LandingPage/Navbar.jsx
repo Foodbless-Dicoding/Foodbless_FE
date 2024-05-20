@@ -30,6 +30,7 @@ export default function NavbarFoodBless() {
               <a className="font-medium hover:text-fbYellow  hover:underline" href="/">Beranda</a>
               <a className="font-medium hover:text-fbYellow  hover:underline" href="#">Pengguna</a>
               <a className="font-medium hover:text-fbYellow  hover:underline" href="#">Pemilik Bisnis</a>
+              <a className="font-medium hover:text-fbYellow  hover:underline" href="#">Tentang</a>
               <a className="font-medium hover:text-fbYellow  hover:underline md:hidden lg:hidden" href="/login">Masuk</a>
               <a className="font-medium hover:text-fbYellow  hover:underline md:hidden lg:hidden" href="#">Daftar</a>
             </div>

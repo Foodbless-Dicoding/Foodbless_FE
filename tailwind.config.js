@@ -17,6 +17,7 @@ module.exports = {
       fbYellow: '#DFE793',
       fbRed: '#FF7973',
       fbDark: '#08080D',
+      fbGray: '#94a3b8',
     },
     container: {
       center: true,

@@ -1,6 +1,24 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const SellerReg = ({fetchProvince, fetchCity}) => {
+
+    const [selectedProvince, setSelectedProvince] = useState(0); 
+    const [filteredCities, setFilteredCities] = useState([]);
+
+    useEffect(() => {
+        // Filter cities based on selected province
+        const filtered = fetchCity.filter((city) => city.provinceId === selectedProvince);
+        setFilteredCities(filtered);
+    }, [selectedProvince, fetchCity]);
+
+    const handleProvinceChange = (e) => {
+        const provinceId = parseInt(e.target.value); 
+        setSelectedProvince(provinceId);
+    };
+
     return (
         <>
             <div className="flex flex-col items-center m-6 py-2 w-[600px] bg-secondaryGreen bg-opacity-75 rounded-2xl">
@@ -52,21 +70,29 @@ const SellerReg = ({fetchProvince, fetchCity}) => {
                     </div>
                     <div className="input-item flex flex-col gap-2 py-2">
                         <label className="text-fbWhite text-sm md:text-md pl-4">Nomor WA</label>
-                        <input placeholder="Dimulai dari angka 62" type="number" id="address" name="address" className="rounded-2xl w-[300px] md:w-[500px] h-9 bg-fbWhite text-fbDark p-2 text-sm" />
+                        <input placeholder="Dimulai dari angka 62" type="number" id="nomorWA" name="nomorWA" className="rounded-2xl w-[300px] md:w-[500px] h-9 bg-fbWhite text-fbDark p-2 text-sm" />
                     </div>
                     <div className="input-item flex flex-col gap-2 py-2">
                         <label className="text-fbWhite text-sm md:text-md pl-4">Provinsi & Kota</label>
-                        <select id="province_id" className="rounded-2xl w-[300px] md:w-[500px] h-9 bg-fbWhite text-fbGray p-2 text-sm">
-                            <option defaultValue="">-- Daftar Provinsi --</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                        <select id="province_id" 
+                            className="rounded-2xl w-[300px] md:w-[500px] h-9 bg-fbWhite text-fbGray p-2 text-sm"
+                            onChange={handleProvinceChange}
+                            value={selectedProvince}
+                        >
+                            <option value="">-- Daftar Provinsi --</option>
+                            {fetchProvince.map((prov) => {
+                                return (
+                                    <option key={prov.id} value={prov.id}>{prov.name}</option>
+                                );
+                            })}
                         </select>
                         <select id="city_id" className="rounded-2xl w-[300px] md:w-[500px] h-9 bg-fbWhite text-fbGray p-2 text-sm">
-                            <option defaultValue="">-- Daftar Kota Sesuai Provinsi --</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="">-- Daftar Kota Sesuai Provinsi --</option>
+                            {filteredCities.map((city) => {
+                                return (
+                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                );
+                            })}
                         </select>
                     </div>
                     <div className="input-item flex flex-col gap-2 py-2">

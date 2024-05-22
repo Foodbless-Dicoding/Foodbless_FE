@@ -1,4 +1,5 @@
 import SellerReg from "@/components/Register/SellerReg";
+import { getFoodblessAPI } from "@/data/api-endpoint.js";
 
 const Page = async() => {
     // Fetch API

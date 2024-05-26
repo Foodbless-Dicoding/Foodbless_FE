@@ -1,8 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import { postLogin } from '@/data/api-endpoint';
 
 
 const LoginForm = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const data = {
+            email,
+            password,
+        };
+        try {
+            postLogin(data);
+        } catch (error) {
+            console.error("Login Failed: ", error);
+        }
+    }
+
     return (
         <>
             <div className="relative flex flex-col m-6 space-y-8 bg-secondaryGreen bg-opacity-75 rounded-2xl md:flex-row md:space-y-0">
@@ -14,15 +34,27 @@ const LoginForm = () => {
                 <div className="flex flex-col justify-center p-8 md:p-14 items-center">
                     <Image className="py-2" src="/assets/logo_login.png" alt="FoodBless Logo" width={48} height={48} />
                     <h1 className="text-fbYellow font-bold text-xl md:text-3xl text-center mb-4">Masuk</h1>
-                    <form id="login_form" className="flex flex-col md:w-72">
+                    <form onSubmit={handleSubmit} id="login_form" className="flex flex-col md:w-72">
                         <div className="input-item flex flex-col gap-2 py-2">
                             <label className="text-fbWhite text-sm md:text-md pl-4">Email</label>
-                            <input placeholder="Masukkan Email.." type="email" id="email" name="email" className="rounded-2xl h-9 bg-fbWhite text-fbDark p-2 text-sm" />
+                            <input placeholder="Masukkan Email.."
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                className="rounded-2xl h-9 bg-fbWhite text-fbDark p-2 text-sm" />
                         </div>
                         <div className="input-item flex flex-col gap-2 py-2">
                             <label className="text-fbWhite text-sm md:text-md pl-4">Password</label>
                             <div className="relative flex flex-row items-center">
-                                <input id="hs-toggle-password" type="password" name="password" className="p-2 w-full text-fbDark rounded-2xl text-sm bg-fbWhite disabled:opacity-50 disabled:pointer-events-none" placeholder="Masukkan Password.."/>
+                                <input id="hs-toggle-password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)} 
+                                    type="password" 
+                                    name="password" 
+                                    className="p-2 w-full text-fbDark rounded-2xl text-sm bg-fbWhite disabled:opacity-50 disabled:pointer-events-none" 
+                                    placeholder="Masukkan Password.."/>
                                 <button type="button" data-hs-toggle-password='{
                                     "target": "#hs-toggle-password"
                                 }' className="absolute -top-0.5 end-0 p-3.5 rounded-e-md">

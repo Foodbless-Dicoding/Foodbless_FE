@@ -1,23 +1,14 @@
 "use client";
 
 import LoginForm from "@/components/Login/LoginForm";
-import { Suspense, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { Suspense } from "react";
 import Loading from "@/app/loading";
+import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 
 const Page = () => {
-
-    const router = useRouter();
-
-    useEffect(() => {
-      const token = Cookies.get("token");
-  
-      if (token) {
-        router.push("/dashboard");
-      }
-    }, [router]);
     
+    useCheckTokenAndRedirect();
+
     return (
         <>
             <Suspense fallback={<Loading />}>

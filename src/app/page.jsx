@@ -19,7 +19,6 @@ export default function Home() {
 
   useEffect(() => {
     const token = Cookies.get("token");
-
     if (token) {
       router.push("/dashboard");
     }

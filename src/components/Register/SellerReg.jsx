@@ -263,7 +263,7 @@ const SellerReg = ({fetchProvince, fetchCity}) => {
                             />
                         </label>
                     </div>
-                    <button type="submit" className="bg-fbRed my-4 py-4 text-fbWhite text-sm md:text-md w-full font-bold rounded-lg p-2 hover:scale-110">Masuk</button>
+                    <button type="submit" className="bg-fbRed my-4 py-4 text-fbWhite text-sm md:text-md w-full font-bold rounded-lg p-2 hover:scale-110">Daftar</button>
                 </form>
             </div>
         </>

@@ -10,23 +10,23 @@ module.exports = {
   ],
   prefix: "",
   theme: {
-    colors: {
-      primaryGreen: '#005250',
-      secondaryGreen: '#00615F',
-      fbWhite: '#F9F3F0',
-      fbYellow: '#DFE793',
-      fbRed: '#FF7973',
-      fbDark: '#08080D',
-      fbGray: '#94a3b8',
-    },
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
+      colors: {
+        primaryGreen: '#005250',
+        secondaryGreen: '#00615F',
+        fbWhite: '#F9F3F0',
+        fbYellow: '#DFE793',
+        fbRed: '#FF7973',
+        fbDark: '#08080D',
+        fbGray: '#94a3b8',
+      },
+      container: {
+        center: true,
+        padding: "2rem",
+        screens: {
+          "2xl": "1400px",
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -43,9 +43,8 @@ module.exports = {
       },
     },
   },
-  plugins: 
-    [
-      require("tailwindcss-animate"),
-      require('preline/plugin'),
-    ],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('preline/plugin'),
+  ],
 }

@@ -6,7 +6,7 @@ import Loading from "@/app/loading";
 import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 
 const Page = () => {
-    
+    // Auth Check (WithToken, WithoutToken)
     useCheckTokenAndRedirect();
 
     return (

@@ -38,11 +38,17 @@ export const postLogin = async (loginData) => {
         const token = results.token;
         const user_id = results.data.user_id;
         const role = results.data.role;
+        const photo = results.data.photo;
+        const username = results.data.username;
+        const city_id = results.data.city_id;
 
         // Store token in local storage using Cookies.js: set 1 day expiry
         Cookies.set("token", token, { expires: 1 });
         Cookies.set("user_id", user_id, { expires: 1 });
         Cookies.set("role", role, { expires: 1 });
+        Cookies.set("photo", photo, { expires: 1 });
+        Cookies.set("username", username, { expires: 1 });
+        Cookies.set("city_id", city_id, { expires: 1 });
 
         // Redirect to /dashboard
         window.location.href = "/dashboard";
@@ -52,6 +58,24 @@ export const postLogin = async (loginData) => {
         throw error;
     }
 }
+
+export const postLogout = () => {
+    try {
+        // Get all cookies
+        const allCookies = Cookies.get();
+
+        // Remove each cookie
+        Object.keys(allCookies).forEach(cookieName => {
+            Cookies.remove(cookieName);
+        });
+
+        // Redirect to /login
+        window.location.href = "/login";
+    } catch (error) {
+        console.error("Logout Failed: ", error);
+        throw error;
+    }
+};
 
 export const postCreateFoodItem = async (data) => {
 

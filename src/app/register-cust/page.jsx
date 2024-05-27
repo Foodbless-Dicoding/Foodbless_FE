@@ -8,7 +8,7 @@ import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 
 const Page = () => {
 
-    // Route Checker
+    // Auth Check (WithToken, WithoutToken)
     useCheckTokenAndRedirect("/dashboard", "/register-cust");
 
     // Fetch API

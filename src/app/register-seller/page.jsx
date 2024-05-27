@@ -5,7 +5,8 @@ import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 import SellerReg from "@/components/Register/SellerReg";
 
 const Page = () => {
-    // Route Checker
+    
+    // Auth Check (WithToken, WithoutToken)
     useCheckTokenAndRedirect("/dashboard", "/register-seller");
 
     // Fetch API

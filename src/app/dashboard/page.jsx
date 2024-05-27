@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import Layout from "@/components/DashboardTemplate/Layout";
+import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 
 const Page = () => {
+
+    // Auth Check (WithToken, WithoutToken)
+    useCheckTokenAndRedirect("/dashboard", "/login");
+
     const [token, setToken] = useState("");
     const [user_id, setUser_id] = useState("");
 
@@ -18,9 +24,11 @@ const Page = () => {
 
     return (
         <>
-            <h1>DASHBOARD</h1>
-            <h2>Token: {token}</h2>
-            <h2>User ID: {user_id}</h2>
+        <Layout>
+            
+        </Layout>
+        {/* <h2>Token: {token}</h2>
+        <h2>User ID: {user_id}</h2> */}
         </>
     );
 }

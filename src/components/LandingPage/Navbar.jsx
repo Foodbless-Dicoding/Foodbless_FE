@@ -11,12 +11,12 @@ export default function NavbarFoodBless() {
           </Link>
           <div className="sm:order-3 flex items-center gap-x-2">
             <a href="/login">
-              <button id="masuk-btn" type="button" className="py-2 px-5 hover:scale-110	inline-flex items-center gap-x-2 text-sm font-bold rounded-lg border border-fbYellow bg-white text-fbYellow shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+              <button id="masuk-btn" type="button" className="py-2 px-5 hover:scale-110	inline-flex items-center gap-x-2 text-sm font-bold rounded-lg border border-fbYellow bg-transparent text-fbYellow shadow-sm disabled:opacity-50 disabled:pointer-events-none">
                 Masuk
               </button>
             </a>
             <a href="/daftar">
-              <button id="daftar-btn" type="button" className="hover:scale-110 py-2 px-5 inline-flex items-center gap-x-2 text-sm font-bold rounded-lg border border-gray-200 bg-fbYellow text-primaryGreen shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+              <button id="daftar-btn" type="button" className="hover:scale-110 py-2 px-5 inline-flex items-center gap-x-2 text-sm font-bold rounded-lg bg-fbYellow text-primaryGreen shadow-sm  disabled:opacity-50 disabled:pointer-events-none">
                 Daftar
               </button>
             </a>

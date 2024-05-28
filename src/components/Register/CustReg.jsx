@@ -87,7 +87,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
         <h1 className="text-fbYellow font-bold text-xl md:text-2xl text-center mb-4">Daftar Sebagai Customer</h1>
         <form id="cust_register flex flex-col w-full px-4" onSubmit={handleSubmit}>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Email</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Email <span className="text-fbRed">*</span></label>
             <input
               placeholder="Masukkan Email.."
               type="email"
@@ -99,7 +99,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             />
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Username</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Username <span className="text-fbRed">*</span></label>
             <input
               placeholder="Masukkan Username.."
               type="text"
@@ -111,7 +111,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             />
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Nama Customer</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Nama Customer <span className="text-fbRed">*</span></label>
             <input
               placeholder="Masukkan Namamu.."
               type="text"
@@ -123,7 +123,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             />
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Password</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Password <span className="text-fbRed">*</span></label>
             <div className="relative flex flex-row items-center">
               <input
                 max={16}
@@ -162,7 +162,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             </div>
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Konfirmasi Password</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Konfirmasi Password <span className="text-fbRed">*</span></label>
             <div className="relative flex flex-row items-center">
               <input
                 max={16}
@@ -201,7 +201,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             </div>
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Alamat</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Alamat <span className="text-fbRed">*</span></label>
             <input
               placeholder="Masukkan Alamatmu.."
               type="text"
@@ -213,7 +213,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             />
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Nomor WA</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Nomor WA <span className="text-fbRed">*</span></label>
             <input
               placeholder="Dimulai dari angka 62"
               type="number"
@@ -225,7 +225,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             />
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Provinsi & Kota</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Provinsi & Kota <span className="text-fbRed">*</span></label>
             <select
               id="province_id"
               className="rounded-2xl w-[300px] md:w-[500px] h-9 bg-fbWhite text-fbGray p-2 text-sm"
@@ -258,7 +258,7 @@ const CustReg = ({ fetchProvince, fetchCity }) => {
             </select>
           </div>
           <div className="input-item flex flex-col gap-2 py-2">
-            <label className="text-fbWhite text-sm md:text-md pl-4">Upload Foto</label>
+            <label className="text-fbWhite text-sm md:text-md pl-4">Upload Foto <span className="text-fbRed">*</span></label>
             <label className="block">
               <span className="sr-only">Choose profile photo</span>
               <input

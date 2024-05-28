@@ -42,7 +42,7 @@ export const postLogin = async (loginData) => {
         const username = results.data.username;
         const city_id = results.data.city_id;
 
-        // Store token in local storage using Cookies.js: set 1 day expiry
+        // Store token in local storage using Cookies.js
         Cookies.set("token", token, { expires: 1 });
         Cookies.set("user_id", user_id, { expires: 1 });
         Cookies.set("role", role, { expires: 1 });

@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
       <SideNavbar ref={sidebarRef} isOpen={isSidebarOpen}/>
       <div className="flex flex-col flex-1 overflow-hidden">
         <TopNavbar toggleSidebar={toggleSidebar} role={role} photo={photo} username={username} />
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className="flex-1 px-6 py-6 overflow-y-auto">
           {children}
         </main>
       </div>

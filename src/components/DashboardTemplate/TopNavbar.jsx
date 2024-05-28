@@ -4,11 +4,8 @@ import { CaretRight, FadersHorizontal, List, SignOut, User } from '@phosphor-ico
 import { postLogout } from '@/data/api-endpoint.js';
 
 const TopNavbar = ({ toggleSidebar, role, photo, username }) => {
-
-  console.log(photo);
-
   return (
-    <nav className=" flex bg-primaryGreen p-4 h-[75px] items-center">
+    <nav className=" flex bg-primaryGreen p-4 h-[75px] items-center z-40">
       <div className="container mx-auto flex justify-between items-center">
       <div className="md:hidden items-center flex">
           <button onClick={toggleSidebar} className="text-gray-300 focus:outline-none">
@@ -34,13 +31,13 @@ const TopNavbar = ({ toggleSidebar, role, photo, username }) => {
             </button>
 
             {/* Profile Modals */}
-            <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-neutral-50 shadow-md rounded-lg p-2 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
+            <div className="hs-dropdown-menu z-50 transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-neutral-50 shadow-md rounded-lg p-2 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
                 <a className="flex cursor-default items-center font-bold gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 focus:outline-none focus:bg-gray-100" href="#">
                 <User size={18} />
                   {username}
                 </a>
                 <hr className="border-gray-200" />
-                <a className="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+                <a className="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/dashboard/account">
                   <FadersHorizontal size={18} />
                   Akun Saya
                 </a>

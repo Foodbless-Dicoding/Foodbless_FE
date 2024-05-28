@@ -6,7 +6,7 @@ import { forwardRef } from 'react';
 
 const SideNavbar = forwardRef(({ isOpen }, ref) => {
   return (
-    <div ref={ref} className={`bg-secondaryGreen text-white h-full w-64 p-4 fixed md:relative transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-200 ease-in-out`}>
+    <div ref={ref} className={`bg-secondaryGreen z-50 text-white h-full w-64 p-4 fixed md:relative transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-200 ease-in-out`}>
       <div className="flex flex-row items-center justify-center">
         <Image className="py-2" src="/assets/logo_nav_desktop.png" alt="FoodBless Logo" width={192} height={192} />
       </div>

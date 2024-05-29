@@ -99,10 +99,9 @@ const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
             }
 
             await putUpdateUser("updateSeller", jwtAuth, updateData);
-            console.log("Token: ", jwtAuth);
 
             // Logout after update
-            // postLogout();
+            postLogout();
 
         } catch (error) {
             console.error("Error updating data: ", error);
@@ -253,7 +252,7 @@ const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
                         })}
                     </select>
                     <div className="flex flex-row justify-end">
-                        <button type="button" className="bg-fbRed my-4 py-4 text-fbWhite text-sm md:text-md w-[200px] font-bold rounded-lg p-2 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200" data-hs-overlay="#hs-slide-down-animation-modal">
+                        <button type="button" className="bg-primaryGreen my-4 py-4 text-fbWhite text-sm md:text-md w-[200px] font-bold rounded-lg p-2 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200" data-hs-overlay="#hs-slide-down-animation-modal">
                             Update
                         </button>
                         {/* Modals */}
@@ -271,12 +270,12 @@ const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
                                     </div>
                                     <div className="p-4 overflow-y-auto">
                                         <p className="mt-1 text-gray-800 dark:text-neutral-400">
-                                            Anda akan otomatis <span className="text-red-500 font-bold">Logout</span> setelah meng-update data ini, apakah anda yakin?
+                                            Anda akan otomatis <span className="text-red-500 font-bold">Logout</span> setelah meng-update data ini, lanjutkan?
                                         </p>
                                     </div>
                                     <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
                                         <button type="submit" className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white  disabled:opacity-50 disabled:pointer-events-none">
-                                            Lanjutkan Update
+                                            Lanjutkan!
                                         </button>
                                     </div>
                                 </div>

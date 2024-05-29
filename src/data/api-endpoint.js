@@ -82,10 +82,9 @@ export const putUpdateUser = async (resource, jwtToken, data) => {
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}${resource}`, data, {
             headers: {
                 "Content-Type": "multipart/form-data",
-                "Authorization": "Bearer " + jwtToken,
+                "Authorization": jwtToken,
             },
         });
-        console.log("Data Updated: ", response.data);
         return response.data;
 
     } catch (error) {

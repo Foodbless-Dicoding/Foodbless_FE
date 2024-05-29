@@ -77,6 +77,24 @@ export const postLogout = () => {
     }
 };
 
+export const putUpdateUser = async (resource, jwtToken, data) => {
+    try {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}${resource}`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": "Bearer " + jwtToken,
+            },
+        });
+        console.log("Data Updated: ", response.data);
+        return response.data;
+
+    } catch (error) {
+        console.error("Error sending data: ", error);
+        console.log(error.response.data);
+        throw error;
+    }
+}
+
 export const postCreateFoodItem = async (data) => {
 
 }

@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="h-screen flex bg-neutral-200">
-      <SideNavbar ref={sidebarRef} isOpen={isSidebarOpen}/>
+      <SideNavbar ref={sidebarRef} isOpen={isSidebarOpen} role={role} />
       <div className="flex flex-col flex-1 overflow-hidden">
         <TopNavbar toggleSidebar={toggleSidebar} role={role} photo={photo} username={username} />
         <main className="flex-1 px-6 py-6 overflow-y-auto">

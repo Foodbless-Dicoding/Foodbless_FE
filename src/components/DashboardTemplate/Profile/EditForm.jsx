@@ -6,10 +6,13 @@ import UpdateCust from "@/components/DashboardTemplate/Profile/FormUpdate/Update
 import UpdateAdmin from "@/components/DashboardTemplate/Profile/FormUpdate/UpdateAdmin";
 import { UserList } from "@phosphor-icons/react";
 import Cookies from "js-cookie";
+import { getFoodblessAPI } from "@/data/api-endpoint";
 
 const EditForm = ({ userDetails, role }) => {
     const [loading, setLoading] = useState(true);
     const [jwtAuth, setJwtAuth] = useState("");
+    const [city, setCity] = useState([]);
+    const [province, setProvince] = useState([]);
 
     useEffect(() => {
         if (userDetails) {
@@ -21,6 +24,30 @@ const EditForm = ({ userDetails, role }) => {
         const token = Cookies.get("token");
         setJwtAuth(token);
     }, [jwtAuth]);
+
+    useEffect(() => {
+        const fetchCity = async () => {
+            try {
+                const fetchCity = await getFoodblessAPI("cityAll", "");
+                setCity(fetchCity.cities);
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        };
+        fetchCity();
+    },[]);
+
+    useEffect(() => {
+        const fetchProvincies = async () => {
+            try {
+                const fetchProvincies = await getFoodblessAPI("provinceAll", "");
+                setProvince(fetchProvincies.provincies);
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        }
+        fetchProvincies();
+    },[]);
 
     return (
         <>
@@ -38,13 +65,13 @@ const EditForm = ({ userDetails, role }) => {
                 ) : (
                     <>
                         {role === "seller" && (
-                            <UpdateSeller userDetails={userDetails} jwtAuth={jwtAuth} />
+                            <UpdateSeller userDetails={userDetails} jwtAuth={jwtAuth} fetchCities={city} fetchProvincies={province} />
                         )}
                         {role === "customer" && (
-                            <UpdateCust userDetails={userDetails} jwtAuth={jwtAuth} />
+                            <UpdateCust userDetails={userDetails} jwtAuth={jwtAuth} fetchCities={city} fetchProvincies={province} />
                         )}
                         {role === "admin" && (
-                            <UpdateAdmin userDetails={userDetails} jwtAuth={jwtAuth} />
+                            <UpdateAdmin userDetails={userDetails} jwtAuth={jwtAuth} fetchCities={city} fetchProvincies={province} />
                         )}
                     </>
                 )}

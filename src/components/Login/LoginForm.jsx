@@ -28,7 +28,13 @@ const LoginForm = () => {
             <div className="relative flex flex-col m-6 space-y-8 bg-secondaryGreen bg-opacity-75 rounded-2xl md:flex-row md:space-y-0">
                 {/* Bagian Kiri */}
                 <div className="relative">
-                    <img src="/assets/bg_login2.png" className="w-[400px] h-full hidden rounded-l-2xl md:block object-cover" alt="login_background2" /> 
+                    <Image
+                            src="/assets/bg_login2.png"
+                            width={400}
+                            height={400}
+                            className="hidden rounded-l-2xl md:block object-cover"
+                            alt="login_background2"
+                        />                
                 </div>
                 {/* Bagian Kanan */}
                 <div className="flex flex-col justify-center p-8 md:p-14 items-center">

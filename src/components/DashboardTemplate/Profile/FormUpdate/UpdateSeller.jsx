@@ -270,7 +270,7 @@ const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
                                     </div>
                                     <div className="p-4 overflow-y-auto">
                                         <p className="mt-1 text-gray-800 dark:text-neutral-400">
-                                            Anda akan otomatis <span className="text-red-500 font-bold">Logout</span> setelah meng-update data ini, lanjutkan?
+                                            Anda akan otomatis <span className="text-red-500 font-bold">Logout</span> setelah meng-update data ini, pastikan semua kolom sudah terisi lengkap, lanjutkan?
                                         </p>
                                     </div>
                                     <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">

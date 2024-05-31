@@ -33,6 +33,10 @@ const AddFood = ({jwtToken, sellerId, sellerCityId}) => {
         style: 'currency',
         currency: 'IDR'
     }).format(price ? parseFloat(price) : 0);
+    // const formattedPrice = new Intl.NumberFormat('id-ID', {
+    //     style: 'currency',
+    //     currency: 'IDR'
+    // }).format(price ? parseFloat(price) : 0);
 
     // Photo Handler
     const handlePhotoChange = (e) => {
@@ -91,7 +95,7 @@ const AddFood = ({jwtToken, sellerId, sellerCityId}) => {
           className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none"
           data-hs-overlay="#hs-vertically-centered-scrollable-modal"
         >
-          Tambahkan
+            <p className="hidden md:flex">Tambah</p>
           <Plus size={20} weight="bold" />
         </button>
 

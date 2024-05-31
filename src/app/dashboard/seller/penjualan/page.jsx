@@ -22,6 +22,9 @@ const Page = () => {
     // State for seller_id & seller_city_id
     const [sellerId, setSellerId] = useState(0);
     const [sellerCityId, setSellerCityId] = useState(0);
+
+    // useState for Food Data
+    const [foodData, setFoodData] = useState([]);
     
     // useEffect - for getting userId from Cookies
     useEffect(() => {
@@ -60,9 +63,23 @@ const Page = () => {
         }
     }, [userDetails]);
 
+    // useEffect for Food Data
+    useEffect(() => {
+        const fetchFoodData = async() => {
+            try {
+                const response = await getFoodblessAPI("getAllFoods", "");
+                setFoodData(response.foods);
+
+            } catch (error) {
+                console.error("Error fetching data: ", error);  
+            }
+        }
+        fetchFoodData();
+    },[])
+
     return (
         <Layout>
-            <SellingSection sellerId={sellerId} sellerCityId={sellerCityId} />
+            <SellingSection sellerId={sellerId} sellerCityId={sellerCityId} foodData={foodData} />
         </Layout>
     );
 };

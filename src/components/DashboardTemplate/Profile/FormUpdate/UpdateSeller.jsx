@@ -6,7 +6,10 @@ import { useEffect, useState } from "react";
 import { putUpdateUser } from "@/data/api-endpoint";
 import { postLogout } from "@/data/api-endpoint";
 
-const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
+const UpdateSeller = ({userDetails, 
+    jwtAuth, 
+    fetchCities, 
+    fetchProvincies}) => {
 
     // Based on Form Input
     const [user_id, setUser_id] = useState("");
@@ -38,8 +41,9 @@ const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
         setSelectedCity(cityId);
     }
 
+    // Handler Photo Change
     const handlePhotoChange = (e) => {
-        setPhoto(e.target.files[0]); // Store the selected file
+        setPhoto(e.target.files[0]); 
     };
 
     // For Default Value useEffect
@@ -130,7 +134,6 @@ const UpdateSeller = ({userDetails, jwtAuth, fetchCities, fetchProvincies}) => {
                                 file:disabled:opacity-50 file:disabled:pointer-events-none"
                         />
                     </div>
-
                 </div>
                 <div className="input-item flex flex-col gap-2 px-4 py-2 pt-4">
                         <label className="text-fbDark text-sm md:text-md pl-4 font-semibold">Email <span className="text-red-500">*</span></label>

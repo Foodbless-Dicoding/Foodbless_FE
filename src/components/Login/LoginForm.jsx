@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { postLogin } from '@/data/api-endpoint';
+import Link from "next/link";
+import { ArrowLeft } from "@phosphor-icons/react";
 
 
 const LoginForm = () => {
@@ -38,6 +40,9 @@ const LoginForm = () => {
                 </div>
                 {/* Bagian Kanan */}
                 <div className="flex flex-col justify-center p-8 md:p-14 items-center">
+                    <Link className="flex items-start justify-center right-[5.5rem] md:right-[8rem] relative" href="/">
+                        <ArrowLeft className="text-fbWhite hover:text-fbYellow" size={24} weight="bold" />
+                    </Link>
                     <Image className="py-2" src="/assets/logo_login.png" alt="FoodBless Logo" width={48} height={48} />
                     <h1 className="text-fbYellow font-bold text-xl md:text-3xl text-center mb-4">Masuk</h1>
                     <form onSubmit={handleSubmit} id="login_form" className="flex flex-col md:w-72">

@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { GearSix, PencilSimpleLine, Stack, ThumbsDown, ThumbsUp, TrashSimple } from "@phosphor-icons/react";
+import { BookOpen, GearSix, PencilSimpleLine, Stack, ThumbsDown, ThumbsUp } from "@phosphor-icons/react";
 
 const SellerCard = ({ foodData }) => {
 
@@ -84,17 +84,18 @@ const SellerCard = ({ foodData }) => {
                                 <div className="py-2 first:pt-0 last:pb-0">
                                     <a
                                         className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-fbDark font-regular hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                                        href={`/dashboard/seller/penjualan/${foodData.id}`}
+                                    >
+                                        <BookOpen size={20} />
+                                        Detail Barang
+                                    </a>
+                                    <a
+                                        className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg font-semibold text-sm text-orange-500 font-regular hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                                         href="#"
                                     >
-                                        <PencilSimpleLine size={20} />
+                                        <PencilSimpleLine weight="bold" size={20} />
                                         Edit Barang
                                     </a>
-                                    <button
-                                        className="flex items-center w-full gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-500 font-bold hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                                    >
-                                        <TrashSimple size={20} weight="bold" />
-                                        Hapus Barang
-                                    </button>
                                 </div>
                             </div>
                         )}

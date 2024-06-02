@@ -2,6 +2,7 @@
 
 import Layout from "@/components/DashboardTemplate/Layout";
 import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
+import BerandaHeader from "@/components/DashboardTemplate/BerandaHeader";
 
 const Page = () => {
 
@@ -11,7 +12,7 @@ const Page = () => {
     return (
         <>
         <Layout>
-            
+            <BerandaHeader />
         </Layout>
         </>
     );

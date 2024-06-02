@@ -20,7 +20,7 @@ const Why = () => {
                     </div>
                     <div id="fth_why" className="why_item flex flex-col text-center items-center justify-center hover:scale-110 transition ease-in-out duration-300">
                         <h3 className="text-fbWhite text-md w-3/4">
-                        Selamatkan makanan favoritmmu!</h3>
+                        Selamatkan makanan favoritmu!</h3>
                     </div>
                 </div>
             </div>

@@ -67,7 +67,7 @@ const Page = () => {
     useEffect(() => {
         const fetchFoodData = async() => {
             try {
-                const response = await getFoodblessAPI("getAllFoods", "");
+                const response = await getFoodblessAPI("foods", "");
                 setFoodData(response.foods);
 
             } catch (error) {

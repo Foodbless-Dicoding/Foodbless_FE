@@ -146,16 +146,16 @@
 /* Beranda Dashboard - End */
 
 /* For Scrolling - Style */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 12px;
     background-color:#005250;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: #DFE793;
-    border-radius: 2.5px;
-}
+    border-radius: 3px;
+} */
 
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
     background-color: #FF7973;
-}
+} */

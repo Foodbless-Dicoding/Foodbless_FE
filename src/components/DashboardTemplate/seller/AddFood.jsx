@@ -28,6 +28,7 @@ const AddFood = ({jwtToken, sellerId, sellerCityId}) => {
         Function Management
     */
 
+
     // Money IDR Formatter
     const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',

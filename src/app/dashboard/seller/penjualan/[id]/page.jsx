@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 import Layout from "@/components/DashboardTemplate/Layout";
 import useCheckRoleAndRedirect from "@/lib/auth/useCheckRoleAndRedirect";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {getFoodDataById} from "@/data/api-endpoint";
+import FoodDetailSeller from "@/components/DashboardTemplate/seller/FoodDetailSeller";
 
 
 const Page = ({params: {id}}) => {
@@ -17,8 +19,15 @@ const Page = ({params: {id}}) => {
 
     // useState for Food Details
     const [foodDetails, setFoodDetails] = useState({});
+    console.log("Food Details: ", foodDetails);
 
-    console.log("ID: ", id);
+    // useMemo for getting food details - to prevent infinite loop
+    const memoizedFoodDetails = useMemo(() => {
+        if (id) {
+            return getFoodDataById(id);
+        }
+        return null;
+    },[id]);
 
     // useEffect for getting food details
     useEffect(() => {
@@ -37,13 +46,13 @@ const Page = ({params: {id}}) => {
             }
         }
         fetchFoodDetails();
-    })
+    }, [memoizedFoodDetails])
 
 
     return (
         <>
             <Layout>
-                <h1>Food Detail dengan ID: {foodDetails.id}</h1>
+                <FoodDetailSeller foodData={foodDetails} />
             </Layout>
         </>
     )

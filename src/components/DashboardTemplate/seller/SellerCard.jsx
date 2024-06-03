@@ -6,6 +6,8 @@ import { BookOpen, GearSix, PencilSimpleLine, Stack, ThumbsDown, ThumbsUp } from
 
 const SellerCard = ({ foodData }) => {
 
+    console.log("Food Data: ", foodData);
+
     // useState Lists
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [systemDate, setSystemDate] = useState(new Date());

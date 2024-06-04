@@ -1,13 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
+
+"use client";
 import { useState, useEffect } from "react";
 import { getFoodblessAPI } from "@/data/api-endpoint";
+import { ArrowLeft } from "@phosphor-icons/react";
 
 const FoodDetailSeller = ({ foodData }) => {
-    // console.log("Food Data: ", foodData);
 
     // useState for Seller Details
     const [sellerId, setSellerId] = useState("");
     const [sellerDetails, setSellerDetails] = useState([]);
+    const [sellerCity, setSellerCity] = useState(0);
+    const [sellerProvince, setSellerProvince] = useState(0);
 
     //useEffect for sellerId
     useEffect(() => {
@@ -22,7 +26,7 @@ const FoodDetailSeller = ({ foodData }) => {
             if (sellerId) {
                 try {
                     const response = await getFoodblessAPI("getAllSellers", "");
-                    const sellerData = response.customers; // Change it to sellers later!
+                    const sellerData = response.seller; // Change it to sellers later!
                     const filteredSellerData = sellerData.filter((seller) => seller.id_seller === sellerId);
                     console.log("Filtered Seller Data: ", filteredSellerData);
                     if (filteredSellerData.length > 0) {
@@ -46,10 +50,12 @@ const FoodDetailSeller = ({ foodData }) => {
 
     return (
         <>
-            <section className="flex flex-col w-full min-h-[400px] rounded-lg bg-fbWhite">
+            <section className="flex flex-col w-full min-h-[400px] rounded-lg bg-fbWhite ">
+                    <a className="hidden md:flex flex-row gap-4 pl-6 relative top-4" href="/dashboard/seller/penjualan">
+                        <ArrowLeft size={24} />
+                    </a>
                 <div className="flex flex-col md:flex-row md:py-6 md:pt-8 md:px-6">
                     <div className="md:w-1/3 w-full">
-                        <a href="/dashboard/seller/penjualan"></a>
                         <img
                             className="md:h-[300px] h-[200px] w-full md:w-[300px] md:rounded-md md:shadow-md rounded-t-lg object-cover"
                             src={`https://photo-foodbless.s3.ap-southeast-1.amazonaws.com/storage_folder/${foodData.photo}`}
@@ -82,18 +88,13 @@ const FoodDetailSeller = ({ foodData }) => {
                                 <>
                                     <div className="flex flex-col">
                                     <img
-                                        className="w-10 h-10 rounded-full object-cover"
-                                        src="https://photo-foodbless.s3.ap-southeast-1.amazonaws.com/storage_folder/0lWXpLkrSwByPxmg.jpg"
+                                        className="md:w-10 md:h-10 w-5 h-5 rounded-full object-cover"
+                                        src={sellerDetails.photo}
                                         alt="Food Photo"
                                         />
-                                    {/* <img
-                                        className="md:h-[300px] h-[200px] w-full md:w-[300px] md:rounded-md md:shadow-md rounded-t-lg object-cover"
-                                        src={`https://photo-foodbless.s3.ap-southeast-1.amazonaws.com/storage_folder/${sellerDetails.photo}`}
-                                        alt="Food Photo"
-                                        /> */}
                                     </div>
-                                    <div className="flex flex-col px-4 pt-1">
-                                        <h3 className="font-bold text-md text-fbBlack">{sellerDetails.name}</h3>
+                                    <div className="flex flex-col px-4 items-center md:pt-1 justify-center md:justify-normal ">
+                                        <h3 className="font-bold text-sm md:text-md text-fbBlack">{sellerDetails.name}</h3>
                                         
                                     </div>  
                                 </>

@@ -15,7 +15,6 @@ export const getFoodblessAPI = async (resource, query) => {
 export const getFoodDataById = async (id) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/food/${id}`);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error("Error fetching data: ", error);

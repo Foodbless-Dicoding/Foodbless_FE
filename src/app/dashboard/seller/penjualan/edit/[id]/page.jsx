@@ -1,24 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-
 import useCheckTokenAndRedirect from "@/lib/auth/useCheckTokenAndRedirect";
 import Layout from "@/components/DashboardTemplate/Layout";
 import useCheckRoleAndRedirect from "@/lib/auth/useCheckRoleAndRedirect";
 import { useState, useEffect, useMemo } from "react";
 import {getFoodDataById} from "@/data/api-endpoint";
-import FoodDetailSeller from "@/components/DashboardTemplate/seller/FoodDetailSeller";
-
+import Cookies from "js-cookie";
+import EditFood from "@/components/DashboardTemplate/seller/EditFood";
 
 const Page = ({params: {id}}) => {
 
     // Auth Check (WithToken, WithoutToken)
-    useCheckTokenAndRedirect(`/dashboard/seller/penjualan/${id}`, "");
-
+    useCheckTokenAndRedirect(`/dashboard/seller/penjualan/edit/${id}`, "");
     // Auth Role Check (decidedRoles, urlWithRole)
-    useCheckRoleAndRedirect("seller", `/dashboard/seller/penjualan/${id}`);
+    useCheckRoleAndRedirect("seller", `/dashboard/seller/penjualan/edit/${id}`);
 
     // useState for Food Details
     const [foodDetails, setFoodDetails] = useState({});
+    const [jwtToken, setJwtToken] = useState("");
+
+    // useEffect for getting jwtToken from Cookies
+    useEffect(() => {
+        const token = Cookies.get("token");
+        setJwtToken(token);
+    }, []); 
 
     // useMemo for getting food details - to prevent infinite loop
     const memoizedFoodDetails = useMemo(() => {
@@ -47,14 +52,15 @@ const Page = ({params: {id}}) => {
         fetchFoodDetails();
     }, [memoizedFoodDetails])
 
-
     return (
         <>
             <Layout>
-                <FoodDetailSeller foodData={foodDetails} />
+                <EditFood foodData={foodDetails} jwtToken={jwtToken} />
+
             </Layout>
         </>
-    )
+    );
+
 }
 
 export default Page;

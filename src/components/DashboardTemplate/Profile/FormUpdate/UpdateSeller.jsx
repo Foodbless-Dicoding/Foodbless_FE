@@ -28,7 +28,6 @@ const UpdateSeller = ({userDetails,
 
     // Misc - Profile Picture Purpose
     const [oldPhoto, setOldPhoto] = useState("");
-    console.log("Old Photo: ", oldPhoto);
 
     // Halder Province Change
     const handleProvinceChange = (e) => {

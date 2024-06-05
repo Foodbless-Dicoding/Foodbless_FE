@@ -24,6 +24,9 @@ const SellingSection = ({ sellerId, sellerCityId, foodData }) => {
     useEffect(() => {
         if (foodData) {
             const filteredData = foodData.filter((food) => food.seller_id === sellerId);
+            // Sort by expireDate in descending order (newest to oldest)
+            filteredData.sort((a, b) => new Date(b.expireDate) - new Date(a.expireDate));
+            setFilteredFoodData(filteredData);
             setFilteredFoodData(filteredData);
         }
     }, [foodData, sellerId]);
@@ -34,7 +37,7 @@ const SellingSection = ({ sellerId, sellerCityId, foodData }) => {
                 <div className="flex flex-row items-center justify-between">
                     <div className="title_wrap flex flex-row text-secondaryGreen font-bold text-md md:text-lg lg:text-xl items-center gap-2">
                         <Storefront weight="bold" size={30} />
-                        <h2>Penjualan Barang Saya ({filteredFoodData.length})</h2>
+                        <h2>Penjualan Saya ({filteredFoodData.length})</h2>
                     </div>
                     <div className="button_wrap flex flex-row">
                         <AddFood jwtToken={jwtToken} sellerId={sellerId} sellerCityId={sellerCityId} />

@@ -6,8 +6,6 @@ import { BookOpen, GearSix, PencilSimpleLine, Stack, ThumbsDown, ThumbsUp } from
 
 const SellerCard = ({ foodData }) => {
 
-    console.log("Food Data: ", foodData);
-
     // useState Lists
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [systemDate, setSystemDate] = useState(new Date());
@@ -77,7 +75,7 @@ const SellerCard = ({ foodData }) => {
                             id="hs-dropdown-with-icons"
                             type="button"
                             onClick={toggleDropdown}
-                            className="hs-dropdown-toggle w-full py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-medium rounded-lg text-fbWhite bg-fbRed disabled:opacity-50 disabled:pointer-events-none"
+                            className="hs-dropdown-toggle w-full py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-medium rounded-lg text-fbWhite bg-primaryGreen disabled:opacity-50 disabled:pointer-events-none"
                         >
                             <GearSix size={20} weight="bold" />
                         </button>
@@ -92,8 +90,8 @@ const SellerCard = ({ foodData }) => {
                                         Detail Barang
                                     </a>
                                     <a
-                                        className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg font-semibold text-sm text-orange-500 font-regular hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                                        href="#"
+                                        className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg font-semibold text-sm text-primaryGreen font-regular hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                                        href={`/dashboard/seller/penjualan/edit/${foodData.id}`}
                                     >
                                         <PencilSimpleLine weight="bold" size={20} />
                                         Edit Barang

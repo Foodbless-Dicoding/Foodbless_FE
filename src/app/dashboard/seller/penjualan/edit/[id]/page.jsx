@@ -11,7 +11,7 @@ import EditFood from "@/components/DashboardTemplate/seller/EditFood";
 const Page = ({params: {id}}) => {
 
     // Auth Check (WithToken, WithoutToken)
-    useCheckTokenAndRedirect(`/dashboard/seller/penjualan/edit/${id}`, "");
+    useCheckTokenAndRedirect(`/dashboard/seller/penjualan/edit/${id}`, "/login");
     // Auth Role Check (decidedRoles, urlWithRole)
     useCheckRoleAndRedirect("seller", `/dashboard/seller/penjualan/edit/${id}`);
 

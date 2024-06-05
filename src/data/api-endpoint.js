@@ -126,4 +126,22 @@ export const postCreateFoodItem = async (jwtToken, data) => {
     }
 }
 
+export const putUpdateFoodItem = async(jwtToken, data) => {
+    try {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/updateFood`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": jwtToken,
+            },
+        });
+        return response.data;
+
+    } catch (error) {
+        console.error("Error sending data: ", error);
+        console.log(error.response.data);
+        throw error;
+    }
+
+}
+
 

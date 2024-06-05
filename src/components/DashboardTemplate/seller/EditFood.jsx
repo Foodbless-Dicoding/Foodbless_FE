@@ -1,6 +1,7 @@
 "use client";
 import { UserList } from "@phosphor-icons/react";
 import { useState, useEffect } from "react";
+import { putUpdateFoodItem } from "@/data/api-endpoint";
 
 const EditFood = ({jwtToken, foodData}) => {
     console.log(foodData);
@@ -42,7 +43,35 @@ const EditFood = ({jwtToken, foodData}) => {
     }, [foodData])
 
 
-    
+    // Fungsi untuk Submit Form
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const updateData = {
+            id : foodData.id,
+            seller_id : foodData.seller_id,
+            name : name,
+            price : price,
+            stock : stock,
+            status: foodData.status,
+            description : description,
+            expireDate : expireDate,
+            pickUpTimeStart : pickUpTimeStart,
+            pickUpTimeEnd : pickUpTimeEnd,
+            photo : photo
+        };
+
+        try {
+            if (jwtToken && updateData) {
+                await putUpdateFoodItem(jwtToken, updateData);
+                console.log("Data Updated: ", updateData);
+            }
+        } catch (error) {
+            console.error("Error updating data: ", error);      
+        }
+
+        // Redirect to Penjualan Page
+        window.location.replace("/dashboard/seller/penjualan");
+    }
 
     return(
         <>
@@ -52,7 +81,7 @@ const EditFood = ({jwtToken, foodData}) => {
                     <h2 className="text-lg font-semibold "><span className="font-bold">Edit: </span> {foodData.name}</h2>
                 </div>
                 <hr className="border-neutral-300 mx-4 mt-2 border-[1.5px]" />
-                <form className="flex flex-col gap-2">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                     <div className="input-item flex flex-col pt-2 px-4">
                         <label className="text-fbDark text-sm md:text-md  font-semibold">
                             Nama Barang <span className="text-red-500">*</span>
@@ -177,13 +206,10 @@ const EditFood = ({jwtToken, foodData}) => {
                             />
                     </div>
                     <button className="py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
-                    type="button">
+                    type="submit">
                         <p>Update </p>
                     </button>
-
-                </form>
-
-                
+                </form>             
             </section>
         </>
     );

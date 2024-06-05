@@ -104,7 +104,7 @@ const UpdateCust = ({userDetails,
             await putUpdateUser("updateCustomer", jwtAuth, updateData);
 
             // Logout after update
-            await postLogout();
+            postLogout();
 
         } catch (error) {
             console.error("Error updating data: ", error);

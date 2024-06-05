@@ -40,7 +40,6 @@ const FoodDetailSeller = ({ foodData }) => {
                     const response = await getFoodblessAPI("getAllSellers", "");
                     const sellerData = response.seller; // Change it to sellers later!
                     const filteredSellerData = sellerData.filter((seller) => seller.id_seller === sellerId);
-                    console.log("Filtered Seller Data: ", filteredSellerData);
                     if (filteredSellerData.length > 0) {
                         setSellerDetails(filteredSellerData[0]);
                     } else {
@@ -92,7 +91,7 @@ const FoodDetailSeller = ({ foodData }) => {
                     <div className="md:w-1/3 w-full">
                         <img
                             className="md:h-[300px] h-[200px] w-full md:w-[300px] md:rounded-md md:shadow-md rounded-t-lg object-cover"
-                            src={`https://photo-foodbless.s3.ap-southeast-1.amazonaws.com/storage_folder/${foodData.photo}`}
+                            src={`${foodData.photo}`}
                             alt="Food Photo"
                         />
                         <a className="hidden md:flex md:flex-col" href={`/dashboard/seller/penjualan/edit/${foodData.id}`}>

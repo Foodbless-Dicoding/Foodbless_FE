@@ -12,7 +12,7 @@ import FoodDetailSeller from "@/components/DashboardTemplate/seller/FoodDetailSe
 const Page = ({params: {id}}) => {
 
     // Auth Check (WithToken, WithoutToken)
-    useCheckTokenAndRedirect(`/dashboard/seller/penjualan/${id}`, "");
+    useCheckTokenAndRedirect(`/dashboard/seller/penjualan/${id}`, "/login");
 
     // Auth Role Check (decidedRoles, urlWithRole)
     useCheckRoleAndRedirect("seller", `/dashboard/seller/penjualan/${id}`);

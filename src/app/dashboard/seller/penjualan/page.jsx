@@ -10,7 +10,7 @@ import { getFoodblessAPI } from "@/data/api-endpoint";
 
 const Page = () => {
     // Auth Check (WithToken, WithoutToken)
-    useCheckTokenAndRedirect("/dashboard/seller/penjualan", "");
+    useCheckTokenAndRedirect("/dashboard/seller/penjualan", "/login");
 
     // Auth Role Check (decidedRoles, urlWithRole)
     useCheckRoleAndRedirect("seller", "/dashboard/seller/penjualan");

@@ -33,7 +33,7 @@ const TopNavbar = ({ toggleSidebar, role, photo, username }) => {
             {/* Profile Modals */}
             <div className="hs-dropdown-menu z-50 transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-neutral-50 shadow-md rounded-lg p-2 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
                 <a className="flex cursor-default items-center font-bold gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 focus:outline-none focus:bg-gray-100" href="#">
-                <User size={18} />
+                <User weight="bold" size={18} />
                   {username}
                 </a>
                 <hr className="border-gray-200" />

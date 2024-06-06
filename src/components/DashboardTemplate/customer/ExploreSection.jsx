@@ -27,6 +27,8 @@ const ExploreSection = ({foodData}) => {
         if (foodData && custCityId) {
             const filteredData = foodData.filter((food) => food.seller_city_id == custCityId);
             const filteredDataFromExpireDate = filteredData.filter((food) => new Date(food.expireDate) > systemDate);
+            //Sorting from newest to oldest by ExpireDate
+            filteredDataFromExpireDate.sort((a, b) => new Date(b.expireDate) - new Date(a.expireDate));
             setFilteredFoodData(filteredDataFromExpireDate);
         }
     }, [foodData, custCityId, systemDate]);

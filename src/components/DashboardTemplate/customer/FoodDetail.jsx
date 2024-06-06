@@ -1,12 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-
 "use client";
 import { useState, useEffect } from "react";
 import { getFoodblessAPI } from "@/data/api-endpoint";
 import { ArrowLeft } from "@phosphor-icons/react";
 import moment from "moment";
 
-const FoodDetailSeller = ({ foodData }) => {
+const FoodDetail = ({foodData}) => {
 
     // useState for Seller Details
     const [sellerId, setSellerId] = useState("");
@@ -21,6 +20,7 @@ const FoodDetailSeller = ({ foodData }) => {
 
     // useState for System Data
     const [systemDate, setSystemDate] = useState(new Date());
+
 
     // useEffect for systemDate
     useEffect(() => {
@@ -87,12 +87,12 @@ const FoodDetailSeller = ({ foodData }) => {
     return (
         <>
             <section className="flex flex-col w-full min-h-[400px] rounded-lg bg-fbWhite ">
-                    <a className="hidden md:flex flex-row gap-4 pl-6 relative top-4" href="/dashboard/seller/penjualan">
+                    <a className="hidden md:flex flex-row gap-4 pl-6 relative top-4" href="/dashboard/customer/cari-makanan">
                         <ArrowLeft size={24} />
                     </a>
                 <div className="flex flex-col md:flex-row md:py-6 md:pt-8 md:px-6">
                     <div className="md:w-1/3 w-full">
-                    {foodData.stock == 0 ? (
+                        {foodData.stock == 0 ? (
                             <>
                                 <img
                                     className="filter grayscale md:h-[300px] h-[200px] w-full md:w-[300px] md:rounded-md md:shadow-md rounded-t-lg object-cover"
@@ -110,12 +110,22 @@ const FoodDetailSeller = ({ foodData }) => {
                             </>
                         )}
 
-                        <a className="hidden md:flex md:flex-col" href={`/dashboard/seller/penjualan/edit/${foodData.id}`}>
-                            <button className="py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
-                            type="button">
-                                <p>Edit Data</p>
-                            </button>
-                        </a>
+                        {foodData.stock == 0 ? (
+                            <>
+                                <button disabled className="py-2 justify-center mt-4 px-6 w-full hidden md:inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
+                                type="button">
+                                    <p>Stok Habis</p>
+                                </button>     
+                            </>
+                        ) : (
+                            <>
+                                <button className="py-2 justify-center mt-4 px-6 w-full hidden md:inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
+                                type="button">
+                                    <p>Beli Sekarang</p>
+                                </button>
+                            </>
+                        )}
+
                     </div>
                     <div className="md:2/3 w-full px-6 py-4 md:px-8 md:py-2">
                         <h1 className="text-primaryGreen font-bold text-2xl md:text-3xl">
@@ -139,9 +149,13 @@ const FoodDetailSeller = ({ foodData }) => {
                         <h2 className="font-semibold text-3xl text-fbDark">{formattedPrice}</h2>
                         <hr className="mt-2 border-[1.5px] border-gray-200" />
                         <h3 className="font-bold text-lg pt-2 text-fbDark">Deskripsi Barang</h3>
-                        <p className="text-sm py-2 font-regular">
+                        <p className="text-sm font-regular">
                             <span className="font-semibold text-gray-500">Waktu Ambil: </span>
                             {formattedPickUpTimeStart} - {formattedPickUpTimeEnd}
+                        </p>
+                        <p className="text-sm pb-2 font-regular">
+                            <span className="font-semibold text-gray-500">Alamat: </span>
+                            {sellerDetails.address}
                         </p>
                         <p className="text-sm">{foodData.description}</p>
                         <hr className="my-4 border-[1.5px] border-gray-200" />
@@ -159,24 +173,37 @@ const FoodDetailSeller = ({ foodData }) => {
                                         <a className="hover:underline" href="">
                                             <h3 className="font-bold text-sm md:text-md text-fbBlack">{sellerDetails.name}</h3>
                                         </a>
-                                        <p className="text-xs">{sellerCity}, {sellerProvince}</p>
-                                        
+                                        <p className="text-xs">{sellerCity}, {sellerProvince}</p>  
                                     </div>  
                                 </>
                             )}
 
                         </div>
-                        <a className="md:hidden flex flex-col my-4" href={`/dashboard/seller/penjualan/edit/${foodData.id}`}>
-                            <button className="py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
-                            type="button">
-                                <p>Edit Data</p>
-                            </button>
-                        </a>
+                        {/* Mobile Beli Sekarang Button */}
+                        {foodData.stock == 0 ? (
+                            <>
+                                <button disabled className="md:hidden my-2 py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
+                                    type="button">
+                                    <p>Stok Habis</p>
+                                </button> 
+                            
+                            </>
+                        ) : (
+                            <>
+                                <button className="md:hidden my-2 py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
+                                    type="button">
+                                    <p>Beli Sekarang!</p>
+                                </button> 
+                            </>
+                        )}
                     </div>
                 </div>
             </section>
+
+        
         </>
     );
-};
 
-export default FoodDetailSeller;
+}
+
+export default FoodDetail;

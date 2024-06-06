@@ -44,20 +44,44 @@ const SellerCard = ({ foodData }) => {
         <>
             <section className="flex flex-col rounded-xl bg-fbWhite w-full hover:shadow-md transition">
                 <div className="relative pt-[50%] sm:pt-[60%] lg:pt-[70%] rounded-t-xl overflow-hidden">
-                    <img
-                        className="size-full absolute top-0 start-0 object-cover rounded-t-xl"
-                        src={foodData.photo}
-                        alt="Image of Food"
-                    />
+                {foodData.stock == 0 || new Date(foodData.expireDate) < systemDate ? (
+                            <>
+                                <img
+                                    className="size-full absolute top-0 start-0 object-cover rounded-t-xl filter grayscale"
+                                    src={foodData.photo}
+                                    alt="Image of Food"
+                                />                    
+                            </>
+                        ) : (
+                            <>
+                                <img
+                                className="size-full absolute top-0 start-0 object-cover rounded-t-xl"
+                                src={foodData.photo}
+                                alt="Image of Food"
+                                />           
+                            </>
+                        )}
                 </div>
                 <div className="p-4">
                     <h3 className="font-bold text-xl text-primaryGreen">{truncateWords(foodData.name, 3)}</h3>
                     <p className="font-bold text-lg text-fbDark">{formattedPrice}</p>
                     <div className="flex flex-row gap-2 py-2 flex-wrap">
-                        <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-fbYellow text-fbDark">
-                            <Stack weight="bold" size={20} />
-                            Tersisa {foodData.stock}
-                        </span>
+                    {foodData.stock == 0 ? (
+                            <>
+                                <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-red-500 text-fbWhite">
+                                    <Stack weight="bold" size={20} />
+                                    Tersisa {foodData.stock}
+                                </span> 
+                            </>
+
+                        ) : (
+                            <>
+                                <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-fbYellow text-fbDark">
+                                    <Stack weight="bold" size={20} />
+                                    Tersisa {foodData.stock}
+                                </span>       
+                            </>
+                        )}
                         {new Date(foodData.expireDate) > systemDate ? (
                             <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-secondaryGreen text-white">
                                 <ThumbsUp size={20} weight="bold" />

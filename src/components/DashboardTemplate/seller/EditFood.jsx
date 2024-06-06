@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { putUpdateFoodItem } from "@/data/api-endpoint";
 
 const EditFood = ({jwtToken, foodData}) => {
-    console.log(foodData);
-
 
     // useState for Default Value
     const [name, setName] = useState("");
@@ -25,7 +23,7 @@ const EditFood = ({jwtToken, foodData}) => {
 
     // Photo Handler
     const handlePhotoChange = (e) => {
-        setPhoto(e.target.files[0]); // Store the selected file
+        setPhoto(e.target.files[0]); 
     };
 
     // useEffect for default value
@@ -38,7 +36,6 @@ const EditFood = ({jwtToken, foodData}) => {
             setExpireDate(foodData.expireDate || "");
             setPickUpTimeStart(foodData.pickUpTimeStart || "");
             setPickUpTimeEnd(foodData.pickUpTimeEnd || "");
-  
         }
     }, [foodData])
 
@@ -63,7 +60,6 @@ const EditFood = ({jwtToken, foodData}) => {
         try {
             if (jwtToken && updateData) {
                 await putUpdateFoodItem(jwtToken, updateData);
-                console.log("Data Updated: ", updateData);
             }
         } catch (error) {
             console.error("Error updating data: ", error);      
@@ -139,13 +135,13 @@ const EditFood = ({jwtToken, foodData}) => {
                             Deskripsi Barang <span className="text-red-500">*</span>
                         </label>
                         <textarea
-                        className="rounded-lg w-full  bg-neutral-50 border-neutral-300 border-2  text-fbDark p-2 text-sm"
-                        placeholder="Masukkan Deskripsi.."
-                        id="description"
-                        name="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        rows={3}
+                            className="rounded-lg w-full  bg-neutral-50 border-neutral-300 border-2  text-fbDark p-2 text-sm"
+                            placeholder="Masukkan Deskripsi.."
+                            id="description"
+                            name="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            rows={3}
                         ></textarea>
                     </div>
                     <div className="input-item flex flex-col gap-2 px-4">

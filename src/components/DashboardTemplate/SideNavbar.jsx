@@ -23,7 +23,7 @@ const SideNavbar = forwardRef(({ isOpen, role }, ref) => {
               <Storefront size={20} />
                 Penjualan
             </Link>
-            <Link href="/dashboard/seller/order-masuk" className="hover:bg-primaryGreen text-md hover:bg-opacity-50 font-normal p-2 rounded-md flex flex-row items-center gap-2">
+            <Link href="/dashboard/seller/pesanan-masuk" className="hover:bg-primaryGreen text-md hover:bg-opacity-50 font-normal p-2 rounded-md flex flex-row items-center gap-2">
               <BoxArrowDown size={20} />
                 Pesanan Masuk
             </Link>

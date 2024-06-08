@@ -47,6 +47,7 @@ export const postLogin = async (loginData) => {
         });
 
         const results = response.data;
+        console.log(results);
         const token = results.token;
         const user_id = results.data.user_id;
         const role = results.data.role;
@@ -61,6 +62,18 @@ export const postLogin = async (loginData) => {
         Cookies.set("photo", photo, { expires: 1 });
         Cookies.set("username", username, { expires: 1 });
         Cookies.set("city_id", city_id, { expires: 1 });
+
+        // If role == customer, set cookie for customer_id
+        if (role === "customer") {
+            const id_cust = results.data.id_cust;
+            Cookies.set("id_cust", id_cust, { expires: 1 });
+        }
+
+        // If role == seller, set cookie for seller_id
+        if (role === "seller") {
+            const id_seller = results.data.id_seller;
+            Cookies.set("id_seller", id_seller, { expires: 1 });
+        }
 
         // Redirect to /dashboard
         window.location.href = "/dashboard";
@@ -142,6 +155,23 @@ export const putUpdateFoodItem = async(jwtToken, data) => {
         throw error;
     }
 
+}
+
+export const postOrderFood = async (jwtToken, data) => {
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}orders`, data, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": jwtToken,
+            }
+        });
+        return response.data;
+
+    } catch (error) {
+        console.error("Error sending data: ", error);
+        console.log(error.response.data);
+        throw error;
+    }
 }
 
 

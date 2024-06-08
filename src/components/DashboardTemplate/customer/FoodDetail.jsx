@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, useEffect } from "react";
-import { getFoodblessAPI } from "@/data/api-endpoint";
+import { getFoodblessAPI, postOrderFood } from "@/data/api-endpoint";
 import { ArrowLeft } from "@phosphor-icons/react";
 import moment from "moment";
+import Cookies from "js-cookie";
 
 const FoodDetail = ({foodData}) => {
 
@@ -21,6 +22,9 @@ const FoodDetail = ({foodData}) => {
     // useState for System Data
     const [systemDate, setSystemDate] = useState(new Date());
 
+    // get Cookies
+    const jwtToken = Cookies.get("token");
+    const id_cust = Cookies.get("id_cust");
 
     // useEffect for systemDate
     useEffect(() => {
@@ -81,8 +85,31 @@ const FoodDetail = ({foodData}) => {
     // change to IDR format
     const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
-        currency: 'IDR'
+        currency: 'IDR',
+        maximumFractionDigits: 0
     }).format(foodData.price ? parseFloat(foodData.price) : 0);
+
+    const sendOrder = async(e) => {
+        e.preventDefault();
+        const orderData = {
+            food_id: foodData.id,
+            seller_id: foodData.seller_id,
+            customer_id: id_cust,
+            amount: 1, 
+        }
+
+        console.log(orderData);
+
+        try {
+            if (orderData && jwtToken) {
+                await postOrderFood(jwtToken, orderData);
+                // Redirect to Cari Makanan Page
+                window.location.href = "/dashboard/customer/cari-makanan";
+            }
+        } catch (error) {
+            console.error("Error sending data: ", error);
+        }
+    }
 
     return (
         <>
@@ -119,7 +146,7 @@ const FoodDetail = ({foodData}) => {
                             </>
                         ) : (
                             <>
-                                <button className="py-2 justify-center mt-4 px-6 w-full hidden md:inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
+                                <button onClick={sendOrder} className="py-2 justify-center mt-4 px-6 w-full hidden md:inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
                                 type="button">
                                     <p>Beli Sekarang</p>
                                 </button>
@@ -190,7 +217,7 @@ const FoodDetail = ({foodData}) => {
                             </>
                         ) : (
                             <>
-                                <button className="md:hidden my-2 py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
+                                <button onClick={sendOrder} className="md:hidden my-2 py-2 justify-center mt-4 px-6 w-full inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primaryGreen hover:bg-secondaryGreen text-white  disabled:opacity-50 disabled:pointer-events-none" 
                                     type="button">
                                     <p>Beli Sekarang!</p>
                                 </button> 

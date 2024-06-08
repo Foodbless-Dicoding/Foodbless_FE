@@ -81,7 +81,8 @@ const FoodDetailSeller = ({ foodData }) => {
     // change to IDR format
     const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
-        currency: 'IDR'
+        currency: 'IDR',
+        maximumFractionDigits: 0
     }).format(foodData.price ? parseFloat(foodData.price) : 0);
 
     return (

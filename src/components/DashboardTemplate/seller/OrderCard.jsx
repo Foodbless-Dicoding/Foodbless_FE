@@ -1,9 +1,13 @@
 "use client";
 import moment from "moment";
+import Cookies from "js-cookie";
 import { PaperPlaneRight } from "@phosphor-icons/react";
 import {putOrderToProcess, putOrderToFinish, putOrderToCancel} from "@/data/api-endpoint";
 
 const OrderCard = ({ order,jwtToken }) => {
+
+    // Get Roles from Cookies
+    const role = Cookies.get("role");
 
     // Proses Pesanan Handler
     const diprosesPesananHandler = async(e) => {
@@ -112,7 +116,16 @@ const OrderCard = ({ order,jwtToken }) => {
                 <div className="flex flex-row flex-wrap justify-between">
                     <div className="flex flex-col flex-wrap text-fbDark my-2">
                         <h1 className="font-bold text-lg">{order.food_name}</h1>
-                        <h3 className="font-medium text-sm">Dipesan oleh <a href="" className="font-bold hover:underline">{order.customer_name}</a></h3>
+                        {role === "seller" && (
+                            <>
+                                <h3 className="font-medium text-sm">Dipesan oleh <a href="" className="font-bold hover:underline">{order.customer_name}</a></h3>    
+                            </>
+                        )}
+                        {role === "customer" && (
+                            <>
+                                <h3 className="font-medium text-sm">Dipesan dari <a href="" className="font-bold hover:underline">{order.seller_name}</a></h3>
+                            </>
+                        )}
                     </div>
                     <div className="flex flex-row flex-wrap">
                         <div className="md:flex md:flex-col hidden flex-wrap border-r-2 border-neutral-200 mr-4">
@@ -127,35 +140,40 @@ const OrderCard = ({ order,jwtToken }) => {
                 {/* Bottom Header */}
                 <div className="flex flex-row flex-wrap items-center justify-between pt-4">
                     <h5 className="font-medium text-sm text-fbDark">ID Pesanan <span className="font-bold">{order.order_id}</span> </h5>
-                    <div className="flex flex-row flex-wrap pt-2">
-                        {order.status === "diterima" || order.status === "diproses" ? (
-                            <>
-                                <button onClick={batalkanPesananHandler} type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold hover:underline rounded-lg text-red-500 bg-transparent disabled:opacity-50 disabled:pointer-events-none">
-                                    Batalkan
-                                </button>            
-                            </>
-                        ) : (
-                            <>
-                            
-                            </>
-                        )}
+                    {role === "seller" && (
+                        <>
+                            <div className="flex flex-row flex-wrap pt-2">
+                                {order.status === "diterima" || order.status === "diproses" ? (
+                                    <>
+                                        <button onClick={batalkanPesananHandler} type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold hover:underline rounded-lg text-red-500 bg-transparent disabled:opacity-50 disabled:pointer-events-none">
+                                            Batalkan
+                                        </button>            
+                                    </>
+                                ) : (
+                                    <>
+                                    
+                                    </>
+                                )}
 
-                        {order.status === "diterima" && (
-                            <>
-                                <button onClick={diprosesPesananHandler} type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold rounded-lg text-primaryGreen border border-primaryGreen disabled:opacity-50 disabled:pointer-events-none">
-                                    Proses Pesanan
-                                </button>
-                            </>
-                        )}
-                        {order.status === "diproses" && (
-                            <>
-                                <button onClick={selesaiPesananHandler} type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold rounded-lg text-primaryGreen border border-primaryGreen disabled:opacity-50 disabled:pointer-events-none">
-                                    Selesaikan
-                                </button>
-                            </>
-                        )}
+                                {order.status === "diterima" && (
+                                    <>
+                                        <button onClick={diprosesPesananHandler} type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold rounded-lg text-primaryGreen border border-primaryGreen disabled:opacity-50 disabled:pointer-events-none">
+                                            Proses Pesanan
+                                        </button>
+                                    </>
+                                )}
+                                {order.status === "diproses" && (
+                                    <>
+                                        <button onClick={selesaiPesananHandler} type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold rounded-lg text-primaryGreen border border-primaryGreen disabled:opacity-50 disabled:pointer-events-none">
+                                            Selesaikan
+                                        </button>
+                                    </>
+                                )}
 
-                    </div> 
+                            </div>  
+                        </>
+                    )}
+
                 </div>
             </section>
         </>

@@ -71,7 +71,7 @@ const SellerCard = ({ foodData }) => {
                             <>
                                 <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-red-500 text-fbWhite">
                                     <Stack weight="bold" size={20} />
-                                    Tersisa {foodData.stock}
+                                    Stok Habis
                                 </span> 
                             </>
 

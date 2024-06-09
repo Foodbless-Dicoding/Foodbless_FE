@@ -23,6 +23,54 @@ export const getFoodDataById = async (id) => {
 
 }
 
+// Get Order Data By seller_id
+export const getOrderBySellerId = async(id) => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getOrdersBySellerId/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+}
+
+// Get Order Data By customer_id
+export const getOrderByCustomerId = async(id) => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getOrdersByCustomerId/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+}
+
+// Get Order Data By food_id
+export const getOrderByFoodId = async(id) => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getOrdersByFoodId/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+}
+
+// Get Order Data by order_id
+export const getOrderByOrderId = async(id) => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getOrdersByOrderId/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+
+}
+
+
+// Function for Authentication System
+
 export const postRegister = async (resource, data) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${resource}`, data, {
@@ -103,7 +151,7 @@ export const postLogout = () => {
 };
 
 
-// Using JWT Token
+// Using JWT Token - Functions
 export const putUpdateUser = async (resource, jwtToken, data) => {
     try {
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}${resource}`, data, {
@@ -174,4 +222,51 @@ export const postOrderFood = async (jwtToken, data) => {
     }
 }
 
+export const putOrderToProcess = async (jwtToken, data) => {
+    try {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}updateOrderToDiproses`, data, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": jwtToken,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error sending data: ", error);
+        console.log(error.response.data);
+        throw error;  
+    }
+}
+
+export const putOrderToFinish = async (jwtToken, data) => {
+    try {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}updateOrderToSelesai`, data, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": jwtToken,
+            }
+        });
+        return response.data;
+        
+    } catch (error) {
+        
+    }
+
+}
+
+export const putOrderToCancel = async (jwtToken, data) => {
+    try {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}updateOrderToDibatalkan`, data, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": jwtToken,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error sending data: ", error);
+        console.log(error.response.data);
+        throw error;
+    }
+}
 

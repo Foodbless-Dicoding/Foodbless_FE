@@ -179,15 +179,14 @@ const UpdateCust = ({userDetails,
                         </div>
                 </div>
                 <div className="input-item flex flex-col gap-2 px-4 py-2 pt-4">
-                        <label className="text-fbDark text-sm md:text-md pl-4 font-semibold">Nama Seller <span className="text-red-500">*</span></label>
-                        <input placeholder="Masukkan Nama Seller.." 
+                        <label className="text-fbDark text-sm md:text-md pl-4 font-semibold">Nama<span className="text-red-500">*</span></label>
+                        <input placeholder="Masukkan Nama.." 
                             type="text"
                             id="name"
                             name="name" 
                             value={name}
                             onChange={(e) => setName(e.target.value)} 
                             className="rounded-lg w-full h-9 bg-neutral-50 border-neutral-300 border-2  text-fbDark p-2 text-sm" />
-                            <p className="text-sm text-neutral-400">Dapat diisi dengan nama toko atau usaha</p>
                 </div>
                 <div className="input-item flex flex-col gap-2 px-4 py-2 pt-4">
                         <label className="text-fbDark text-sm md:text-md pl-4 font-semibold">Nomor WA <span className="text-red-500">*</span></label>

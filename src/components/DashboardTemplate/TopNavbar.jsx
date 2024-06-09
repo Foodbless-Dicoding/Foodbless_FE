@@ -23,7 +23,7 @@ const TopNavbar = ({ toggleSidebar, role, photo, username }) => {
 
             <button id="hs-dropdown-hover-event" type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-3xl bg-fbYellow text-fbDark shadow-sm disabled:opacity-50 disabled:pointer-events-none">
             {photo ? (
-                <img className="w-6 h-6 rounded-full" src={`${photo}`} alt="Profile" />
+                <img className="w-6 h-6 rounded-full object-cover" src={`${photo}`} alt="Profile" />
               ) : (
                 <img className="w-6 h-6 rounded-full" src="https://placehold.co/400" alt="" />
             )}

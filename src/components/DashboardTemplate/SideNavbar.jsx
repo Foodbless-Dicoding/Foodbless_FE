@@ -27,7 +27,7 @@ const SideNavbar = forwardRef(({ isOpen, role }, ref) => {
               <BoxArrowDown size={20} />
                 Pesanan Masuk
             </Link>
-            <Link href="/dashboard/seller/riwayat-order" className="hover:bg-primaryGreen text-md hover:bg-opacity-50 font-normal p-2 rounded-md flex flex-row items-center gap-2">
+            <Link href="/dashboard/seller/riwayat-pesanan" className="hover:bg-primaryGreen text-md hover:bg-opacity-50 font-normal p-2 rounded-md flex flex-row items-center gap-2">
             <ClockCounterClockwise size={20} />
                 Riwayat Pesanan
             </Link>

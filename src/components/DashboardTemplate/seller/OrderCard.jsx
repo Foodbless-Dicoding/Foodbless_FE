@@ -115,7 +115,22 @@ const OrderCard = ({ order,jwtToken }) => {
                 {/* Middle Header */}
                 <div className="flex flex-row flex-wrap justify-between">
                     <div className="flex flex-col flex-wrap text-fbDark my-2">
-                        <h1 className="font-bold text-lg">{order.food_name}</h1>
+                        {role === "seller" && (
+                            <>
+                                <a target="_blank" href={`/dashboard/seller/penjualan/${order.food_id}`}>
+                                    <h1 className="font-bold hover:underline text-lg">{order.food_name}</h1>
+                                </a>
+                            </>
+                        )}
+
+                        {role === "customer" && (
+                            <>
+                                <a target="_blank" href={`/dashboard/customer/cari-makanan/${order.food_id}`}>
+                                    <h1 className="font-bold hover:underline text-lg">{order.food_name}</h1>
+                                </a>
+                            </>
+                        )}
+
                         {role === "seller" && (
                             <>
                                 <h3 className="font-medium text-sm">Dipesan oleh <a href="" className="font-bold hover:underline">{order.customer_name}</a></h3>    

@@ -133,12 +133,12 @@ const OrderCard = ({ order,jwtToken }) => {
 
                         {role === "seller" && (
                             <>
-                                <h3 className="font-medium text-sm">Dipesan oleh <a href="" className="font-bold hover:underline">{order.customer_name}</a></h3>    
+                                <h3 className="font-medium text-sm">Dipesan oleh <a href="" className="font-bold">{order.customer_name}</a></h3>    
                             </>
                         )}
                         {role === "customer" && (
                             <>
-                                <h3 className="font-medium text-sm">Dipesan dari <a href="" className="font-bold hover:underline">{order.seller_name}</a></h3>
+                                <h3 className="font-medium text-sm">Dipesan dari <a href={`/dashboard/profile/seller/${order.seller_id}`} className="font-bold hover:underline">{order.seller_name}</a></h3>
                             </>
                         )}
                     </div>
@@ -185,7 +185,22 @@ const OrderCard = ({ order,jwtToken }) => {
                                     </>
                                 )}
 
+
                             </div>  
+                        </>
+                    )}
+
+                    {role === "customer" && (
+                        <>
+                            {order.status === "selesai" && (
+                                <>
+                                    <a target="_blank" href={`/dashboard/profile/seller/${order.seller_id}`}>
+                                        <button type="button" className="hs-dropdown-toggle py-2 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-bold rounded-lg text-primaryGreen border border-primaryGreen disabled:opacity-50 disabled:pointer-events-none">
+                                            Beri Ulasan
+                                        </button>
+                                    </a>
+                                </>
+                            )}
                         </>
                     )}
 

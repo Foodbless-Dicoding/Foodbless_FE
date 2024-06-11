@@ -11,6 +11,19 @@ export const getFoodblessAPI = async (resource, query) => {
     }
 }
 
+// get SellerDetail by seller_id
+export const getSellerDetail = async(id) => {
+    if (id) {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seller/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+            throw error;
+        }
+    }
+}
+
 // Get Food Data By ID
 export const getFoodDataById = async (id) => {
     try {
@@ -60,6 +73,18 @@ export const getOrderByFoodId = async(id) => {
 export const getOrderByOrderId = async(id) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getOrdersByOrderId/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+
+}
+
+// get Comment by id_seller
+export const getCommentBySellerId = async(id) => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getCommentByIdSeller/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching data: ", error);
@@ -149,6 +174,24 @@ export const postLogout = () => {
         throw error;
     }
 };
+
+export const postComment = async(data) => {
+    if (data) {
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}createComment`, data, {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                }
+            });
+            return response.data;
+            
+        } catch (error) {
+            console.error("Error sending data: ", error);
+            throw error;
+        }
+        
+    }
+}
 
 
 // Using JWT Token - Functions
@@ -249,6 +292,9 @@ export const putOrderToFinish = async (jwtToken, data) => {
         return response.data;
         
     } catch (error) {
+        console.error("Error sending data: ", error);
+        console.log(error.response.data);
+        throw error;
         
     }
 

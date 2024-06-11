@@ -7,6 +7,7 @@ import { ArrowLeft } from "@phosphor-icons/react";
 import moment from "moment";
 
 const FoodDetailSeller = ({ foodData }) => {
+    console.log(foodData);
 
     // useState for Seller Details
     const [sellerId, setSellerId] = useState("");
@@ -15,7 +16,7 @@ const FoodDetailSeller = ({ foodData }) => {
     const [sellerProvince, setSellerProvince] = useState("");
 
     // use MomentJS to format date
-    const formattedExpireDate = moment(foodData.expireDate).locale('id').format('LL LT');
+    const formattedExpireDate = moment(foodData.expireDate).format('LL LT');
     const formattedPickUpTimeStart = moment(foodData.pickUpTimeStart, 'HH:mm').locale('id').format('LT');
     const formattedPickUpTimeEnd = moment(foodData.pickUpTimeEnd, 'HH:mm').locale('id').format('LT');
 
@@ -157,7 +158,7 @@ const FoodDetailSeller = ({ foodData }) => {
                                         />
                                     </div>
                                     <div className="flex flex-col px-4 justify-center md:justify-start ">
-                                        <a className="hover:underline" href="">
+                                        <a className="hover:underline" target="_blank" href={`/dashboard/profile/seller/${foodData.seller_id}`}>
                                             <h3 className="font-bold text-sm md:text-md text-fbBlack">{sellerDetails.name}</h3>
                                         </a>
                                         <p className="text-xs">{sellerCity}, {sellerProvince}</p>

@@ -18,6 +18,7 @@ const Page = ({params: {id}}) => {
 
     // useState for Food Details
     const [foodDetails, setFoodDetails] = useState({});
+    console.log(foodDetails);
 
     
     // useMemo for getting food details - to prevent infinite loop

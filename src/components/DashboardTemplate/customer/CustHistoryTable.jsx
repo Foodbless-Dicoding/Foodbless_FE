@@ -169,7 +169,7 @@ const CustHistoryTable = ({ historyData }) => {
                     noHeader
                     pagination
                     progressPending={pending}
-                    progressComponent={<h2>Loading...</h2>}
+                    progressComponent={<div className="table_loader"></div>}
                     persistTableHead
                     noDataComponent="Tidak ada data yang ditemukan"
                     paginationPerPage={5}

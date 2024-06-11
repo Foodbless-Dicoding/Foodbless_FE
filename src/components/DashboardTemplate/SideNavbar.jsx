@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { Binoculars, BoxArrowDown, ClockCounterClockwise, House, Package, Storefront } from '@phosphor-icons/react';
+import { Binoculars, BoxArrowDown, ClockCounterClockwise, House, Package, Storefront, Users } from '@phosphor-icons/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { forwardRef } from 'react';
@@ -53,7 +53,14 @@ const SideNavbar = forwardRef(({ isOpen, role }, ref) => {
 
         {role === "admin" && (
           <>
-          
+            <Link href="/dashboard/admin/list-akun" className="hover:bg-primaryGreen text-md hover:bg-opacity-50 font-normal p-2 rounded-md flex flex-row items-center gap-2">
+              <Users size={20} />
+              List Akun
+            </Link>
+            <Link href="/dashboard/admin/riwayat-jual-beli" className="hover:bg-primaryGreen text-md hover:bg-opacity-50 font-normal p-2 rounded-md flex flex-row items-center gap-2">
+              <Package size={20} />
+              Riwayat Jual Beli
+            </Link>
           </>
         )}
 

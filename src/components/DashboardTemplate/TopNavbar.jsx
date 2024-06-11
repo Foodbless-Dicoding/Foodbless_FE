@@ -37,10 +37,19 @@ const TopNavbar = ({ toggleSidebar, role, photo, username }) => {
                   {username}
                 </a>
                 <hr className="border-gray-200" />
-                <a className="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/dashboard/account">
-                  <FadersHorizontal size={18} />
-                  Akun Saya
-                </a>
+                {role === "seller" || role === "customer" ? (
+                  <>
+                    <a className="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/dashboard/account">
+                      <FadersHorizontal size={18} />
+                      Akun Saya
+                    </a>
+                  </>
+                ) : (
+                  <>
+                  
+                  </>
+                )}
+
                 <a onClick={() => postLogout()} className="flex font-bold items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-red-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
                 <SignOut size={18} />
                   Keluar

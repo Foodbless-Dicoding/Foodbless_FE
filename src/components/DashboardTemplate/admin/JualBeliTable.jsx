@@ -1,22 +1,22 @@
 "use client";
 import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
-import { ClockCounterClockwise, MagnifyingGlass } from "@phosphor-icons/react";
+import {  MagnifyingGlass, Package } from "@phosphor-icons/react";
 import moment from "moment";
 
-const SellerHistoryTable = ({ historyData }) => {
-    // useState
+const JualBeliTable = ({ orders }) => {
+ 
     const [pending, setPending] = useState(true);
     const [filterText, setFilterText] = useState("");
 
     useEffect(() => {
-        if (historyData && historyData.length > 0) {
+        if (orders && orders.length > 0) {
             setPending(false);
         }
-    }, [historyData]);
+    }, [orders]);
 
     // filteredItems function
-    const filteredItems = historyData.filter(item => {
+    const filteredItems = orders.filter(item => {
         const searchText = filterText.toLowerCase();
         return (
             (item.order_id && item.order_id.toLowerCase().includes(searchText)) ||
@@ -82,7 +82,7 @@ const SellerHistoryTable = ({ historyData }) => {
             )
         },
         {
-            name: "Nama Item",
+            name: "Produk",
             selector: row => row.food_name,
             sortable: true,
             cell: row => (
@@ -90,6 +90,11 @@ const SellerHistoryTable = ({ historyData }) => {
                     {row.food_name.length > 15 ? `${row.food_name.slice(0, 15)}...` : row.food_name}
                 </div>
             )
+        },
+        {
+            name: "Penjual",
+            selector: row => row.seller_name,
+            sortable: true,
         },
         {
             name: "Pembeli",
@@ -142,44 +147,45 @@ const SellerHistoryTable = ({ historyData }) => {
 
     return (
         <>
-        <section className="px-8 py-4">
-            {/* Table */}
-            <div className="flex flex-col w-full min-h-[400px] bg-neutral-50 rounded-lg px-4 py-2">
-                <div className="flex flex-row flex-wrap items-center justify-between gap-8 pt-2">
-                    <div className="flex flex-row flex-wrap gap-2 items-center ps-2 text-primaryGreen">
-                        <ClockCounterClockwise weight="bold" size={24} />
-                        <h1 className="font-bold text-lg">Riwayat Pesanan Seller</h1>
+            <section className="px-8 py-4">
+                {/* Table */}
+                <div className="flex flex-col w-full min-h-[400px] bg-neutral-50 rounded-lg px-4 py-2">
+                    <div className="flex flex-row flex-wrap items-center justify-between gap-8 pt-2">
+                        <div className="flex flex-row flex-wrap gap-2 items-center ps-2 text-primaryGreen">
+                            <Package weight="bold" size={24} />
+                            <h1 className="font-bold text-lg">Riwayat Jual Beli</h1>
+                        </div>
+                        <div className="flex flex-row flex-wrap px-2 rounded-lg items-center border border-gray-200 bg-neutral-50">
+                            <MagnifyingGlass className="text-gray-400" size={24} />
+                            <input
+                                type="text"
+                                placeholder="Kunci Pencarian..."
+                                className="p-2 bg-transparent focus:outline-none text-gray-400 max-w-[200px]"
+                                onChange={(e) => setFilterText(e.target.value)}
+                                value={filterText}
+                            />
+                        </div>
                     </div>
-                    <div className="flex flex-row flex-wrap px-2 rounded-lg items-center border border-gray-200 bg-neutral-50">
-                        <MagnifyingGlass className="text-gray-400" size={24} />
-                        <input
-                        type="text"
-                        placeholder="Kunci Pencarian..."
-                        className="p-2 bg-transparent focus:outline-none text-gray-400 max-w-[200px]"
-                        onChange={(e) => setFilterText(e.target.value)}
-                        value={filterText}
-                        />
-                    </div>
-                </div>
 
-                <DataTable
-                    className="mt-4"
-                    columns={columns}
-                    data={filteredItems}
-                    noHeader
-                    pagination
-                    progressPending={pending}
-                    progressComponent={<div className="table_loader"></div>}
-                    persistTableHead
-                    noDataComponent="Tidak ada data yang ditemukan"
-                    paginationPerPage={5}
-                    paginationRowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
-                    customStyles={customStyles}             
-                />
-            </div>
-        </section>
+                    <DataTable
+                        className="mt-4"
+                        columns={columns}
+                        data={filteredItems}
+                        noHeader
+                        pagination
+                        progressPending={pending}
+                        progressComponent={<div className="table_loader"></div>}
+                        persistTableHead
+                        noDataComponent="Tidak ada data yang ditemukan"
+                        paginationPerPage={5}
+                        paginationRowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
+                        customStyles={customStyles}
+                    />
+                </div>
+            </section>
         </>
     );
+
 }
 
-export default SellerHistoryTable;
+export default JualBeliTable;

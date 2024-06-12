@@ -160,6 +160,8 @@ const UpdateSeller = ({userDetails,
                         <div className="relative flex flex-row items-center">
                             <input max={16} 
                                 id="hs-toggle-password"
+                                minLength={6}
+                                maxLength={16}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} 
                                 type="password" 
@@ -178,6 +180,7 @@ const UpdateSeller = ({userDetails,
                             </svg>
                             </button>
                         </div>
+                        <p className="text-sm text-neutral-400">Masukkan Password (Baru/Lama)</p>
                 </div>
                 <div className="input-item flex flex-col gap-2 px-4 py-2 pt-4">
                         <label className="text-fbDark text-sm md:text-md pl-4 font-semibold">Nama Seller <span className="text-red-500">*</span></label>

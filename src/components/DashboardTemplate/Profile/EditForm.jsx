@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import UpdateSeller from "@/components/DashboardTemplate/Profile/FormUpdate/UpdateSeller";
 import UpdateCust from "@/components/DashboardTemplate/Profile/FormUpdate/UpdateCust";
-import UpdateAdmin from "@/components/DashboardTemplate/Profile/FormUpdate/UpdateAdmin";
 import { UserList } from "@phosphor-icons/react";
 import Cookies from "js-cookie";
 import { getFoodblessAPI } from "@/data/api-endpoint";
@@ -69,9 +68,6 @@ const EditForm = ({ userDetails, role }) => {
                         )}
                         {role === "customer" && (
                             <UpdateCust userDetails={userDetails} jwtAuth={jwtAuth} fetchCities={city} fetchProvincies={province} />
-                        )}
-                        {role === "admin" && (
-                            <UpdateAdmin userDetails={userDetails} jwtAuth={jwtAuth} fetchCities={city} fetchProvincies={province} />
                         )}
                     </>
                 )}

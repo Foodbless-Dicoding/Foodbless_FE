@@ -58,7 +58,6 @@ const AddFood = ({jwtToken, sellerId, sellerCityId}) => {
         try {
             if (foodData && foodData.seller_id && foodData.seller_city_id) {
                 await postCreateFoodItem(jwtToken, foodData);
-                
             }else{
                 console.error("Food Data not found");
             }

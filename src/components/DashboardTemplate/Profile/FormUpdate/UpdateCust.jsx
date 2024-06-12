@@ -157,7 +157,9 @@ const UpdateCust = ({userDetails,
                 <div className="nput-item flex flex-col gap-2 px-4 py-2 pt-4">
                         <label className="text-fbDark text-sm md:text-md pl-4 font-semibold">Password <span className="text-red-500">*</span></label>
                         <div className="relative flex flex-row items-center">
-                            <input max={16} 
+                            <input
+                                minLength={6}
+                                maxLength={16}
                                 id="hs-toggle-password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} 

@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 export const getFoodblessAPI = async (resource, query) => {
     try {
@@ -113,6 +114,15 @@ export const postRegister = async (resource, data) => {
 
 export const postLogin = async (loginData) => {
     try {
+        Swal.fire({
+            width: 200,
+            height: 200,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login`, loginData, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -120,7 +130,6 @@ export const postLogin = async (loginData) => {
         });
 
         const results = response.data;
-        console.log(results);
         const token = results.token;
         const user_id = results.data.user_id;
         const role = results.data.role;
@@ -128,7 +137,7 @@ export const postLogin = async (loginData) => {
         const username = results.data.username;
         const city_id = results.data.city_id;
 
-        // Store token in local storage using Cookies.js
+        // Simpan token di local storage menggunakan Cookies.js
         Cookies.set("token", token, { expires: 1 });
         Cookies.set("user_id", user_id, { expires: 1 });
         Cookies.set("role", role, { expires: 1 });
@@ -136,28 +145,51 @@ export const postLogin = async (loginData) => {
         Cookies.set("username", username, { expires: 1 });
         Cookies.set("city_id", city_id, { expires: 1 });
 
-        // If role == customer, set cookie for customer_id
+        // Jika role == customer, set cookie untuk customer_id
         if (role === "customer") {
             const id_cust = results.data.id_cust;
             Cookies.set("id_cust", id_cust, { expires: 1 });
         }
 
-        // If role == seller, set cookie for seller_id
+        // Jika role == seller, set cookie untuk seller_id
         if (role === "seller") {
             const id_seller = results.data.id_seller;
             Cookies.set("id_seller", id_seller, { expires: 1 });
         }
 
-        // Redirect to /dashboard
+        // Tutup Swal loading
+        Swal.close();
+
+        // Tampilkan Swal sukses
+        await Swal.fire({
+            icon: "success",
+            width: 300,
+            title: "Login Berhasil!",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 1500,
+        });
+
+        // Redirect ke /dashboard
         window.location.href = "/dashboard";
         
     } catch (error) {
+        // Tutup Swal loading
+        Swal.close();
+        
+        // Tampilkan Swal error
+        Swal.fire({
+            icon: "error",
+            width: 300,
+            title: "Login Gagal",
+            text: error.response?.data?.message || "Cek apakah semua data sudah diisi dengan benar!",
+        });
+
         console.error("Login Failed: ", error);
-        throw error;
     }
 }
 
-export const postLogout = () => {
+export const postLogout = async () => {
     try {
         // Get all cookies
         const allCookies = Cookies.get();
@@ -167,11 +199,26 @@ export const postLogout = () => {
             Cookies.remove(cookieName);
         });
 
-        // Redirect to /login
+        // Tampilkan Swal sukses
+        await Swal.fire({
+            icon: "success",
+            width:300,
+            title: "Logout Berhasil!",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+
+        // Redirect ke /login
         window.location.href = "/login";
     } catch (error) {
+        // Tampilkan Swal error
+        Swal.fire({
+            icon: "error",
+            title: "Logout Gagal",
+            text: "Terjadi kesalahan pada saat logout. Silakan coba lagi.",
+        });
+
         console.error("Logout Failed: ", error);
-        throw error;
     }
 };
 
@@ -196,37 +243,103 @@ export const postComment = async(data) => {
 
 // Using JWT Token - Functions
 export const putUpdateUser = async (resource, jwtToken, data) => {
+    if (!data && !jwtToken) {
+        return; 
+    }
+
+    if (!data.password) {
+        // Swal error if password is empty
+        Swal.fire({
+            icon: "error",
+            width:300,
+            title: "Gagal Memperbarui Data",
+            text: "Password tidak boleh kosong!",
+        });  
+    }
     try {
+        Swal.fire({
+            width: 200,
+            height: 200,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}${resource}`, data, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": jwtToken,
             },
         });
+        Swal.close();
         return response.data;
 
     } catch (error) {
         console.error("Error sending data: ", error);
-        console.log(error.response.data);
         throw error;
     }
 }
 
 export const postCreateFoodItem = async (jwtToken, data) => {
-    try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/createFood`, data, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": jwtToken,
-            }
+    if (data && data.name && data.price && data.description && data.photo) {
+        try {
+            // Tampilkan Swal loading
+            Swal.fire({
+                width: 200,
+                height: 200,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+    
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/createFood`, data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": jwtToken,
+                }
+            });
+            Swal.close();
+            // Tampilkan Swal sukses
+            await Swal.fire({
+                icon: "success",
+                width: 300,
+                title: "Berhasil!",
+                text: "Item makanan berhasil ditambahkan!",
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 1500,
+            });
+    
+            return response.data;
+            
+        } catch (error) {
+            Swal.close();
+            // Tampilkan Swal error
+            await Swal.fire({
+                icon: "error",
+                width: 300,
+                title: "Gagal Menambahkan Item",
+                text: error.response?.data?.message || "Cek apakah semua data sudah diisi dengan benar!",
+            });
+            console.error("Error sending data: ", error);
+            console.log(error.response.data);
+            throw error;  
+        }   
+    }if (!data && 
+        !data.name &&
+        !data.price &&
+        !data.description && 
+        !data.photo
+    ) {
+        // Give Swal error if data is empty
+        Swal.fire({
+            icon: "error",
+            width: 300,
+            title: "Gagal Menambahkan Item",
+            text: "Data tidak boleh kosong!",
         });
-        // console.log(response.data);
-        return response.data;
-        
-    } catch (error) {
-        console.error("Error sending data: ", error);
-        console.log(error.response.data);
-        throw error;  
     }
 }
 

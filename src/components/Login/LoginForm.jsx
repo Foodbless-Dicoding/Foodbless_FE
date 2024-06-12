@@ -81,7 +81,7 @@ const LoginForm = () => {
                             </div>
                         </div>
                         <button type="submit" className="bg-fbRed my-4 text-fbWhite text-sm md:text-md font-bold rounded-lg p-2 hover:scale-110">Masuk</button>
-                        <p className="text-center text-sm text-fbWhite">Belum punya akun? <a className="text-fbYellow" href="/daftar">Daftar</a></p>
+                        <p className="text-center text-sm text-fbWhite">Belum punya akun? <a target="_blank" className="text-fbYellow" href="/daftar">Daftar</a></p>
                     </form>
                 </div>
             </div>

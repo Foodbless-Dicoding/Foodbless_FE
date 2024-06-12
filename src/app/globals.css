@@ -66,6 +66,14 @@
 }
 /* Join Us - End */
 
+.join_us_2 {
+    width: 100%;
+    height: 100vh; 
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%),
+    lightgray url('../../public/Assets/joinbanner.png') no-repeat center / cover;
+}
+
+
 /* Landing Footer - Start */
 .landing_footer {
     width: 100%;

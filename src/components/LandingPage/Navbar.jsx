@@ -27,12 +27,12 @@ export default function NavbarFoodBless() {
           </div>
           <div id="navbar-alignment" className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:grow-0 sm:basis-auto sm:block sm:order-2">
             <div className="text-fbWhite lg:text-lg md:text-md sm:text-md  flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:mt-0 sm:ps-5">
-              <a className="font-medium hover:text-fbYellow  hover:underline" href="/">Beranda</a>
-              <a className="font-medium hover:text-fbYellow  hover:underline" href="#">Pengguna</a>
-              <a className="font-medium hover:text-fbYellow  hover:underline" href="#">Pemilik Bisnis</a>
+              <a target="_blank" className="font-medium hover:text-fbYellow  hover:underline" href="/">Beranda</a>
+              <a target="_blank" className="font-medium hover:text-fbYellow  hover:underline" href="/register-cust">Pengguna</a>
+              <a target="_blank" className="font-medium hover:text-fbYellow  hover:underline" href="/register-seller">Pemilik Bisnis</a>
               <a target="_blank" className="font-medium hover:text-fbYellow  hover:underline"  href="https://github.com/Foodbless-Dicoding">Tentang</a>
               <a className="font-medium hover:text-fbYellow  hover:underline md:hidden lg:hidden" href="/login">Masuk</a>
-              <a className="font-medium hover:text-fbYellow  hover:underline md:hidden lg:hidden" href="#">Daftar</a>
+              <a target="_blank" className="font-medium hover:text-fbYellow  hover:underline md:hidden lg:hidden" href="#">Daftar</a>
             </div>
           </div>
         </nav>

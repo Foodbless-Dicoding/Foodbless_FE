@@ -104,7 +104,9 @@ export const postRegister = async (resource, data) => {
                 "Content-Type": "multipart/form-data",
             },
         });
+        window.location.href = "/";
         return response.data;
+
 
     } catch (error) {
         console.error("Error sending data: ", error);

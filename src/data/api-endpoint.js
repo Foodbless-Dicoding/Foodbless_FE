@@ -94,6 +94,17 @@ export const getCommentBySellerId = async(id) => {
 
 }
 
+//getAllComment
+export const getAllComments = async() => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getCommentAll`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+}
+
 
 // Function for Authentication System
 

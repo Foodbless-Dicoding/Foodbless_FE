@@ -15,6 +15,8 @@ const CommentCard = ({ id_seller }) => {
         if (response.comments) {
             // filtering comments by id_seller
             const filteredComments = response.comments.filter((comment) => comment.id_seller === id_seller);
+            // sort comments by createdAt
+            filteredComments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             setComments(filteredComments);
         } else {
           console.error("No data received from API");

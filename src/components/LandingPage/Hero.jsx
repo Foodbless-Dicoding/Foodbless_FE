@@ -17,7 +17,7 @@ const HeroFoodBless = () => {
                     </p>
                 </div>
                 <div id="right_hero" className="flex flex-col w-full md:w-1/2 items-center">
-                    <Image className="shadow-md" src="/assets/hero_img.png" alt="Hero Image" width={500} height={500} />
+                    <Image className="shadow-md" src="/Assets/hero_img.png" alt="Hero Image" width={500} height={500} />
                 </div>
             </div>
         </section>

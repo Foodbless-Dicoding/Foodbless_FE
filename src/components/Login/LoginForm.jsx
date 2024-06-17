@@ -31,7 +31,7 @@ const LoginForm = () => {
                 {/* Bagian Kiri */}
                 <div className="relative">
                     <Image
-                            src="/assets/bg_login2.png"
+                            src="/Assets/bg_login2.png"
                             width={400}
                             height={400}
                             className="hidden rounded-l-2xl md:block object-cover"

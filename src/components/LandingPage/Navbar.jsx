@@ -7,7 +7,7 @@ export default function NavbarFoodBless() {
       <header className="transform transition-transform duration-300 sticky top-0 z-50 flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-primaryGreen text-sm py-6 px-6">
         <nav className="max-w-[85rem] w-full mx-auto px-4 flex flex-wrap basis-full items-center justify-between" aria-label="Global">
           <Link className="sm:order-1 flex-none text-xl font-semibold" href="/">
-              <Image src="/assets/logo_nav_desktop.png" alt="FoodBless Logo" width={180} height={50} />
+              <Image src="/Assets/logo_nav_desktop.png" alt="FoodBless Logo" width={180} height={50} />
           </Link>
           <div className="sm:order-3 flex items-center gap-x-2">
             <a href="/login">

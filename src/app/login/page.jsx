@@ -19,7 +19,7 @@ const Page = () => {
                 {showAlert && (
                     <div className="flex flex-row items-center justify-between bg-fbYellow text-fbDark text-sm w-full p-4" role="alert">
                         <div className="flex flex-row gap-1 w-3/4 text-fbDark">
-                            <h4>Ingin akses cepat? Pakai <a href="" className="font-semibold hover:underline">akun demo</a> kami!</h4>
+                            <h4>Ingin akses cepat? Pakai <a target="_blank" href="https://drive.google.com/file/d/1lJDzkc9TJj7_GDYl2BRS6cltXPKpkt2c/view?usp=sharing" className="font-semibold hover:underline">akun demo</a> kami!</h4>
                         </div>
                         <div className="flex flex-row w-[40px]">
                             <button 
